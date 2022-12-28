@@ -1,9 +1,9 @@
 
 import 'package:json_annotation/json_annotation.dart';
-part 'sun_times_entity.g.dart';
+part 'weather_sun_times_resp.g.dart';
 
 @JsonSerializable()
-class SunTimesEntity {
+class WeatherSunTimesResp {
 
   @EpochDateTimeConverter()
   final DateTime sunrise, sunset;
@@ -11,9 +11,9 @@ class SunTimesEntity {
   @JsonKey(name: 'country')
   final String countryId;
 
-  SunTimesEntity({required this.sunrise, required this.sunset, required this.countryId});
+  WeatherSunTimesResp({required this.sunrise, required this.sunset, required this.countryId});
 
-  factory SunTimesEntity.fromJson(Map<String, dynamic> json) => _$SunTimesEntityFromJson(json);
+  factory WeatherSunTimesResp.fromJson(Map<String, dynamic> json) => _$WeatherSunTimesRespFromJson(json);
 
 }
 

@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'weather_description_entity.dart';
+part of 'weather_description_resp.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherDescriptionEntity _$WeatherDescriptionEntityFromJson(
+WeatherDescriptionResp _$WeatherDescriptionRespFromJson(
         Map<String, dynamic> json) =>
-    WeatherDescriptionEntity(
+    WeatherDescriptionResp(
       description: json['main'] as String,
       iconPath:
-          WeatherDescriptionEntity._iconPathFromJson(json['icon'] as String),
+          WeatherDescriptionResp._iconPathFromJson(json['icon'] as String),
     );
 
-Map<String, dynamic> _$WeatherDescriptionEntityToJson(
-        WeatherDescriptionEntity instance) =>
+Map<String, dynamic> _$WeatherDescriptionRespToJson(
+        WeatherDescriptionResp instance) =>
     <String, dynamic>{
       'icon': instance.iconPath,
       'main': instance.description,

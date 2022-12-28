@@ -8,14 +8,8 @@ class NoConnectionWidget extends StatefulWidget {
 }
 
 class _NoConnectionWidgetState extends State<NoConnectionWidget> {
-
   @override
   Widget build(BuildContext context) {
-
-    return Expanded(
-      child: Center(
-        child: Image.asset('assets/images/no_wifi.png'),
-      ),
-    );
+    return Center(child: Image.asset('assets/images/no_wifi.png'));
   }
 }

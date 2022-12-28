@@ -85,7 +85,7 @@ class _$WeatherDatabase extends WeatherDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `WeatherEntity` (`cityId` TEXT NOT NULL, `iconPath` TEXT NOT NULL, `temperature` REAL NOT NULL, `windSpeed` REAL NOT NULL, `humidity` INTEGER NOT NULL, `sunrise` INTEGER NOT NULL, `sunset` INTEGER NOT NULL, `tempMin` REAL NOT NULL, `tempMax` REAL NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY (`cityId`))');
+            'CREATE TABLE IF NOT EXISTS `Weather` (`cityId` TEXT NOT NULL, `iconPath` TEXT NOT NULL, `temperature` REAL NOT NULL, `windSpeed` REAL NOT NULL, `humidity` INTEGER NOT NULL, `sunrise` INTEGER NOT NULL, `sunset` INTEGER NOT NULL, `tempMin` REAL NOT NULL, `tempMax` REAL NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY (`cityId`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -104,17 +104,17 @@ class _$WeatherDao extends WeatherDao {
     this.database,
     this.changeListener,
   )   : _queryAdapter = QueryAdapter(database),
-        _weatherEntityInsertionAdapter = InsertionAdapter(
+        _weatherInsertionAdapter = InsertionAdapter(
             database,
-            'WeatherEntity',
-            (WeatherEntity item) => <String, Object?>{
+            'Weather',
+            (Weather item) => <String, Object?>{
                   'cityId': item.cityId,
                   'iconPath': item.iconPath,
                   'temperature': item.temperature,
                   'windSpeed': item.windSpeed,
                   'humidity': item.humidity,
-                  'sunrise': item.sunrise,
-                  'sunset': item.sunset,
+                  'sunrise': _dateTimeConverter.encode(item.sunrise),
+                  'sunset': _dateTimeConverter.encode(item.sunset),
                   'tempMin': item.tempMin,
                   'tempMax': item.tempMax,
                   'description': item.description
@@ -126,19 +126,19 @@ class _$WeatherDao extends WeatherDao {
 
   final QueryAdapter _queryAdapter;
 
-  final InsertionAdapter<WeatherEntity> _weatherEntityInsertionAdapter;
+  final InsertionAdapter<Weather> _weatherInsertionAdapter;
 
   @override
-  Future<WeatherEntity?> findWeatherByCityId(String id) async {
+  Future<Weather?> findWeatherByCityId(String id) async {
     return _queryAdapter.query('SELECT * FROM Weather WHERE cityId = ?1',
-        mapper: (Map<String, Object?> row) => WeatherEntity(
+        mapper: (Map<String, Object?> row) => Weather(
             tempMax: row['tempMax'] as double,
             description: row['description'] as String,
             temperature: row['temperature'] as double,
             humidity: row['humidity'] as int,
             windSpeed: row['windSpeed'] as double,
-            sunrise: row['sunrise'] as int,
-            sunset: row['sunset'] as int,
+            sunrise: _dateTimeConverter.decode(row['sunrise'] as int),
+            sunset: _dateTimeConverter.decode(row['sunset'] as int),
             iconPath: row['iconPath'] as String,
             tempMin: row['tempMin'] as double,
             cityId: row['cityId'] as String),
@@ -146,8 +146,10 @@ class _$WeatherDao extends WeatherDao {
   }
 
   @override
-  Future<void> insertWeather(WeatherEntity weather) async {
-    await _weatherEntityInsertionAdapter.insert(
-        weather, OnConflictStrategy.abort);
+  Future<void> insertWeather(Weather weather) async {
+    await _weatherInsertionAdapter.insert(weather, OnConflictStrategy.abort);
   }
 }
+
+// ignore_for_file: unused_element
+final _dateTimeConverter = DateTimeConverter();

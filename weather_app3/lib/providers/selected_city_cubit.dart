@@ -16,6 +16,7 @@ class SelectedCityCubit extends Cubit<City> {
 
     return SelectedCityCubit._(preferredCity);
   }
+
   SelectedCityCubit._(City selectedCity): super(selectedCity);
 
   /// Toggles the current brightness between light and dark.

@@ -1,5 +1,5 @@
-import 'package:weather_app/models/api_response_entities/weather_api_response.dart';
-import 'package:weather_app/models/weather_entity.dart';
+import 'package:weather_app/models/api_response_entities/weather_resp.dart';
+import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/services/weather_api_service.dart';
 
 class WeatherRepository {
@@ -7,12 +7,12 @@ class WeatherRepository {
 
   WeatherRepository(this._apiService);
 
-  Future<WeatherEntity> getWeatherByCityId(String cityId) =>
+  Future<Weather> getWeatherByCityId(String cityId) =>
       _apiService.getWeatherByCityId(cityId).then((value) => value.toEntity());
 }
 
-extension _WeatherApiResponseToEntityExtension on WeatherApiResponse {
-  WeatherEntity toEntity() {
+extension _WeatherRespToEntityExtension on WeatherResp {
+  Weather toEntity() {
     String iconPath = weather[0].iconPath;
     String description = weather[0].description;
 
@@ -20,12 +20,12 @@ extension _WeatherApiResponseToEntityExtension on WeatherApiResponse {
         sys.sunrise.add(Duration(seconds: timezoneInSeconds));
     DateTime sunset = sys.sunset.add(Duration(seconds: timezoneInSeconds));
 
-    return WeatherEntity(
+    return Weather(
       temperature: main.temp,
       humidity: main.humidity,
       windSpeed: wind.speed,
-      sunset: sunset.millisecondsSinceEpoch,
-      sunrise: sunrise.millisecondsSinceEpoch,
+      sunset: sunset,
+      sunrise: sunrise,
       iconPath: iconPath,
       tempMax: main.tempMax,
       tempMin: main.tempMin,

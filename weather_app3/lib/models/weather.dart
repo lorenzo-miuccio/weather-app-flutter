@@ -1,8 +1,9 @@
 // class containing all weather information used by the app to display the current weather
 import 'package:floor/floor.dart';
+import 'package:weather_app/databases/converter/datetime_converter.dart';
 
 @entity
-class WeatherEntity {
+class Weather {
   @primaryKey
   final String cityId;
 
@@ -10,12 +11,12 @@ class WeatherEntity {
   final double temperature;
   final double windSpeed;
   final int humidity;
-  final int sunrise;
-  final int sunset;
+  final DateTime sunrise;
+  final DateTime sunset;
   final double tempMin, tempMax;
   final String description;
 
-  WeatherEntity({
+  Weather({
     required this.tempMax,
     required this.description,
     required this.temperature,

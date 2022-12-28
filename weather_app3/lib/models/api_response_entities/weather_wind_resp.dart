@@ -1,17 +1,17 @@
 
 import 'package:json_annotation/json_annotation.dart';
-part 'wind_entity.g.dart';
+part 'weather_wind_resp.g.dart';
 
 @JsonSerializable()
-class WindEntity {
+class WeatherWindResp {
 
   @JsonKey(fromJson: _speedFromJson)
   double speed;
 
   static double _speedFromJson(double windSpeed) => windSpeed * 3.6;
 
-  WindEntity({required this.speed});
+  WeatherWindResp({required this.speed});
 
-  factory WindEntity.fromJson(Map<String, dynamic> json) => _$WindEntityFromJson(json);
+  factory WeatherWindResp.fromJson(Map<String, dynamic> json) => _$WeatherWindRespFromJson(json);
 
 }

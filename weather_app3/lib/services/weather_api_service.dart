@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:weather_app/models/api_response_entities/main_weather_entity.dart';
-import 'package:weather_app/models/api_response_entities/sun_times_entity.dart';
-import 'package:weather_app/models/api_response_entities/weather_api_response.dart';
-import 'package:weather_app/models/api_response_entities/wind_entity.dart';
+import 'package:weather_app/models/api_response_entities/weather_main_resp.dart';
+import 'package:weather_app/models/api_response_entities/weather_sun_times_resp.dart';
+import 'package:weather_app/models/api_response_entities/weather_resp.dart';
+import 'package:weather_app/models/api_response_entities/weather_wind_resp.dart';
 import 'package:weather_app/services/api_extensions.dart';
 
 import 'network/weather_api.dart';
 
 abstract class WeatherApiService {
-  Future<WeatherApiResponse> getWeatherByCityId(String cityId);
+  Future<WeatherResp> getWeatherByCityId(String cityId);
 }
 
 class WeatherApiServiceImpl implements WeatherApiService {
@@ -16,19 +16,19 @@ class WeatherApiServiceImpl implements WeatherApiService {
       WeatherApi(Dio()..interceptors.add(_WeatherApiServiceInterceptor()));
 
   @override
-  Future<WeatherApiResponse> getWeatherByCityId(String cityId) =>
+  Future<WeatherResp> getWeatherByCityId(String cityId) =>
       _api.GETWeatherByCityId(cityId: cityId).catchApiRequestErrors();
 }
 
 class WeatherApiServiceMock implements WeatherApiService {
   @override
-  Future<WeatherApiResponse> getWeatherByCityId(String cityId) => Future.value(
-        WeatherApiResponse(
+  Future<WeatherResp> getWeatherByCityId(String cityId) => Future.value(
+        WeatherResp(
           weather: [],
-          main: MainWeatherEntity(temp: 30, humidity: 60, tempMax: 33, tempMin: 25),
-          wind: WindEntity(speed: 20),
+          main: WeatherMainResp(temp: 30, humidity: 60, tempMax: 33, tempMin: 25),
+          wind: WeatherWindResp(speed: 20),
           timezoneInSeconds: 3600,
-          sys: SunTimesEntity(
+          sys: WeatherSunTimesResp(
             sunset: DateTime.now(),
             sunrise: DateTime.now(),
             countryId: '',

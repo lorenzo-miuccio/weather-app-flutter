@@ -4,14 +4,16 @@ class SpecificWeatherDataElement extends StatelessWidget {
   final IconData icon;
   final String value;
 
-  const SpecificWeatherDataElement({required this.value, required this.icon, Key? key})
-      : super(key: key);
+  const SpecificWeatherDataElement({required this.value, required this.icon, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon,size: 36,),
+        Icon(
+          icon,
+          size: 36,
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 15),
           child: SizedBox(

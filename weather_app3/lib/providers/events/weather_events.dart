@@ -1,10 +1,8 @@
-/// Event being processed by [CounterBloc].
-abstract class WeatherEvent {}
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// Notifies bloc to increment state.
-class WeatherFetchRequested extends WeatherEvent {
+part 'weather_events.freezed.dart';
 
-  String cityId;
-
-  WeatherFetchRequested(this.cityId);
+@freezed
+class WeatherEvent with _$WeatherEvent {
+  const factory WeatherEvent.fetchRequested(String cityId) = WeatherFetchRequested;
 }

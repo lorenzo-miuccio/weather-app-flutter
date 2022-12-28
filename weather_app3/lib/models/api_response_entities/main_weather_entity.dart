@@ -6,7 +6,9 @@ part 'main_weather_entity.g.dart';
 class MainWeatherEntity {
 
   final double temp;
+  @JsonKey(name: 'temp_min')
   final double tempMin;
+  @JsonKey(name: 'temp_max')
   final double tempMax;
   final int humidity;
 

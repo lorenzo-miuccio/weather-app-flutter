@@ -14,8 +14,9 @@ WeatherApiResponse _$WeatherApiResponseFromJson(Map<String, dynamic> json) =>
           .toList(),
       main: MainWeatherEntity.fromJson(json['main'] as Map<String, dynamic>),
       wind: WindEntity.fromJson(json['wind'] as Map<String, dynamic>),
-      sunTimes: SunTimesEntity.fromJson(json['sys'] as Map<String, dynamic>),
+      sys: SunTimesEntity.fromJson(json['sys'] as Map<String, dynamic>),
       timezoneInSeconds: json['timezone'] as int,
+      cityName: json['name'] as String,
     );
 
 Map<String, dynamic> _$WeatherApiResponseToJson(WeatherApiResponse instance) =>
@@ -23,6 +24,7 @@ Map<String, dynamic> _$WeatherApiResponseToJson(WeatherApiResponse instance) =>
       'weather': instance.weather,
       'main': instance.main,
       'wind': instance.wind,
-      'sys': instance.sunTimes,
+      'name': instance.cityName,
+      'sys': instance.sys,
       'timezone': instance.timezoneInSeconds,
     };

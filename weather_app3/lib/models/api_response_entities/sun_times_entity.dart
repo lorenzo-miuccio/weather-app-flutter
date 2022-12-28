@@ -6,9 +6,12 @@ part 'sun_times_entity.g.dart';
 class SunTimesEntity {
 
   @EpochDateTimeConverter()
-  DateTime sunrise, sunset;
+  final DateTime sunrise, sunset;
 
-  SunTimesEntity({required this.sunrise, required this.sunset});
+  @JsonKey(name: 'country')
+  final String countryId;
+
+  SunTimesEntity({required this.sunrise, required this.sunset, required this.countryId});
 
   factory SunTimesEntity.fromJson(Map<String, dynamic> json) => _$SunTimesEntityFromJson(json);
 

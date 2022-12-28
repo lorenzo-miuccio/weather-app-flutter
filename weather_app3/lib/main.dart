@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/pages/cities_weather_page.dart';
-import 'package:weather_app/provider/events/weather_events.dart';
-import 'package:weather_app/provider/selected_city_cubit.dart';
-import 'package:weather_app/provider/weather_bloc.dart';
 import 'package:weather_app/services/weather_api_service.dart';
 import 'package:weather_app/widgets/error_widgets/generic_error.dart';
+
+import 'providers/events/weather_events.dart';
+import 'providers/selected_city_cubit.dart';
+import 'providers/weather_bloc.dart';
 
 enum Env {
   dev,

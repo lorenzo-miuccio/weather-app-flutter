@@ -15,9 +15,10 @@ extension _WeatherApiResponseToEntityExtension on WeatherApiResponse {
   WeatherEntity toEntity() {
     String iconPath = weather[0].iconPath;
     String description = weather[0].description;
+
     DateTime sunrise =
-        sunTimes.sunrise.add(Duration(seconds: timezoneInSeconds));
-    DateTime sunset = sunTimes.sunset.add(Duration(seconds: timezoneInSeconds));
+        sys.sunrise.add(Duration(seconds: timezoneInSeconds));
+    DateTime sunset = sys.sunset.add(Duration(seconds: timezoneInSeconds));
 
     return WeatherEntity(
       temperature: main.temp,
@@ -29,6 +30,7 @@ extension _WeatherApiResponseToEntityExtension on WeatherApiResponse {
       tempMax: main.tempMax,
       tempMin: main.tempMin,
       description: description,
+      cityId: '$cityName,${sys.countryId}',
     );
   }
 }

@@ -15,8 +15,10 @@ class WeatherApiResponse {
   final MainWeatherEntity main;
   final WindEntity wind;
 
-  @JsonKey(name: 'sys')
-  final SunTimesEntity sunTimes;
+  @JsonKey(name: 'name')
+  final String cityName;
+
+  final SunTimesEntity sys;
 
   @JsonKey(name: 'timezone')
   final int timezoneInSeconds;
@@ -25,8 +27,9 @@ class WeatherApiResponse {
       {required this.weather,
       required this.main,
       required this.wind,
-      required this.sunTimes,
-      required this.timezoneInSeconds});
+      required this.sys,
+      required this.timezoneInSeconds,
+      required this.cityName});
 
   // method used to retrieve a new instance from the response of the API call
   factory WeatherApiResponse.fromJson(Map<String, dynamic> json) =>

@@ -28,10 +28,11 @@ class WeatherApiServiceMock implements WeatherApiService {
           main: MainWeatherEntity(temp: 30, humidity: 60, tempMax: 33, tempMin: 25),
           wind: WindEntity(speed: 20),
           timezoneInSeconds: 3600,
-          sunTimes: SunTimesEntity(
+          sys: SunTimesEntity(
             sunset: DateTime.now(),
             sunrise: DateTime.now(),
-          ),
+            countryId: '',
+          ), cityName: '',
         ),
       );
 }

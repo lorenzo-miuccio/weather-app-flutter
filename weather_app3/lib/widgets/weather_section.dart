@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/provider/states/weather_fetch_state.dart';
-import 'package:weather_app/provider/weather_bloc.dart';
+import 'package:weather_app/providers/states/weather_fetch_state.dart';
+import 'package:weather_app/providers/weather_bloc.dart';
 import 'package:weather_app/widgets/all_weather_data.dart';
 import 'package:weather_app/widgets/loading_widget.dart';
 

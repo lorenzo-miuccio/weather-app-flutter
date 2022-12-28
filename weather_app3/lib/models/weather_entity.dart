@@ -1,6 +1,12 @@
 // class containing all weather information used by the app to display the current weather
+import 'package:floor/floor.dart';
 
+@entity
 class WeatherEntity {
+
+  @primaryKey
+  final String cityId;
+
   final String iconPath;
   final double temperature;
   final double windSpeed;
@@ -19,5 +25,6 @@ class WeatherEntity {
       required this.sunrise,
       required this.sunset,
       required this.iconPath,
-      required this.tempMin});
+      required this.tempMin,
+      required this.cityId});
 }

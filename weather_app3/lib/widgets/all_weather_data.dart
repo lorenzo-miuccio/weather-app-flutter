@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:weather_app/models/specific_weather_data.dart';
 import 'package:weather_app/models/weather_entity.dart';
-import 'package:weather_app/provider/weather_bloc.dart';
+import 'package:weather_app/providers/weather_bloc.dart';
 import 'package:weather_app/widgets/error_widgets/generic_error.dart';
 import 'package:weather_app/widgets/specific_weather_data_row.dart';
 

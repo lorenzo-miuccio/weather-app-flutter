@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/domain/cities_repository.dart';
-import 'package:weather_app/provider/events/weather_events.dart';
-import 'package:weather_app/provider/selected_city_cubit.dart';
-import 'package:weather_app/provider/weather_bloc.dart';
+import 'package:weather_app/providers/events/weather_events.dart';
+import 'package:weather_app/providers/selected_city_cubit.dart';
+import 'package:weather_app/providers/weather_bloc.dart';
 import 'package:weather_app/services/shared_preferences_service.dart';
 import '../models/city.dart';
 

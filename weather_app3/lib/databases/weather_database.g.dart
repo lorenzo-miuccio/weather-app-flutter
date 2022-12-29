@@ -147,7 +147,7 @@ class _$WeatherDao extends WeatherDao {
 
   @override
   Future<void> insertWeather(Weather weather) async {
-    await _weatherInsertionAdapter.insert(weather, OnConflictStrategy.abort);
+    await _weatherInsertionAdapter.insert(weather, OnConflictStrategy.replace);
   }
 }
 

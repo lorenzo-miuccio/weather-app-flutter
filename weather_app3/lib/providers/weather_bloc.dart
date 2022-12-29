@@ -14,7 +14,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherFetchState> {
 
     on<WeatherFetchRequested> ((event, emit) async {
       emit(const WeatherFetchState.loading());
-      await _weatherRepository.getWeatherByCityId(event.cityId)
+      await _weatherRepository.getRemoteWeatherByCityId(event.cityId)
           .then((value) => emit(WeatherFetchState(currentWeather: value)))
           .catchError((e) {
         if (e is ConnectionException) {

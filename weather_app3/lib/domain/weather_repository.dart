@@ -1,23 +1,35 @@
+import 'package:weather_app/databases/weather_dao.dart';
 import 'package:weather_app/models/api_response_entities/weather_resp.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/services/weather_api_service.dart';
 
 class WeatherRepository {
   final WeatherApiService _apiService;
+  final WeatherDao _weatherDao;
 
-  WeatherRepository(this._apiService);
+  WeatherRepository({apiService, weatherDao})
+      : _apiService = apiService,
+        _weatherDao = weatherDao;
 
-  Future<Weather> getWeatherByCityId(String cityId) =>
-      _apiService.getWeatherByCityId(cityId).then((value) => value.toEntity());
+  Future<Weather> getRemoteWeatherByCityId(String cityId) =>
+      _apiService.getWeatherByCityId(cityId).then((value) {
+        final currentWeather = value.toEntity();
+        _weatherDao.insertWeather(currentWeather);
+        return currentWeather;
+      });
+
+
 }
+
+
+
 
 extension _WeatherRespToEntityExtension on WeatherResp {
   Weather toEntity() {
     String iconPath = weather[0].iconPath;
     String description = weather[0].description;
 
-    DateTime sunrise =
-        sys.sunrise.add(Duration(seconds: timezoneInSeconds));
+    DateTime sunrise = sys.sunrise.add(Duration(seconds: timezoneInSeconds));
     DateTime sunset = sys.sunset.add(Duration(seconds: timezoneInSeconds));
 
     return Weather(

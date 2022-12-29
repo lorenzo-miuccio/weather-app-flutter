@@ -5,6 +5,7 @@ final appTheme = ThemeData(
   textTheme: const TextTheme(
     bodyText1: TextStyle(fontSize: 14),
     bodyText2: TextStyle(fontSize: 14),
-    headline1: TextStyle(fontSize: 40, color: Colors.black),
+    headline2: TextStyle(fontSize: 30),
+    headline1: TextStyle(fontSize: 40),
   ),
 );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/pages/weather_details/weather_details_page.dart';
 import 'package:weather_app/pages/weather_home/widgets/dropdown_menu.dart';
 import 'package:weather_app/pages/weather_home/widgets/weather_section.dart';
 import 'package:weather_app/providers/events/weather_events.dart';
@@ -40,7 +41,7 @@ class WeatherHomePage extends StatelessWidget {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
-          onPressed: () => weatherBloc.add(WeatherFetchRequested(selectedCityId)),
+          onPressed: () => Navigator.of(context).pushNamed(WeatherDetailsPage.routeName),
           child: const Icon(
             Icons.refresh,
             size: 30,

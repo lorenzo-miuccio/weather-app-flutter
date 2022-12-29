@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/models/specific_weather_data.dart';
 import 'package:weather_app/models/weather.dart';
+import 'package:weather_app/models/weather_details.dart';
+import 'package:weather_app/pages/weather_details/weather_details_page.dart';
 import 'package:weather_app/pages/weather_home/widgets/error_widgets/generic_error.dart';
 import 'package:weather_app/pages/weather_home/widgets/specific_weather_data_row.dart';
+import 'package:weather_app/pages/weather_home/widgets/weather_image.dart';
 import 'package:weather_app/providers/weather_bloc.dart';
 
 class AllWeatherData extends StatelessWidget {
@@ -16,7 +19,8 @@ class AllWeatherData extends StatelessWidget {
 
     Weather? currentWeather;
 
-    weatherFetchState.maybeWhen((value) => currentWeather = value, orElse: () => currentWeather = null);
+    weatherFetchState.maybeWhen((value) => currentWeather = value,
+        orElse: () => currentWeather = null);
 
     if (currentWeather == null) return const GenericErrorWidget();
 
@@ -32,21 +36,32 @@ class AllWeatherData extends StatelessWidget {
     ];
 
     final List<SpecificWeatherData> otherWeatherDataList = [
-      SpecificWeatherData(CupertinoIcons.wind, '${currentWeather!.windSpeed.toStringAsFixed(2)} km/h'),
+      SpecificWeatherData(
+          CupertinoIcons.wind, '${currentWeather!.windSpeed.toStringAsFixed(2)} km/h'),
       SpecificWeatherData(CupertinoIcons.drop, '${currentWeather!.humidity}%')
     ];
 
-    final List<List<SpecificWeatherData>> allSpecificWeatherData = [sunDataList, otherWeatherDataList];
+    final List<List<SpecificWeatherData>> allSpecificWeatherData = [
+      sunDataList,
+      otherWeatherDataList
+    ];
 
     return Column(
       children: [
-        SizedBox(
-          height: 280,
-          child: FadeInImage(
-            fadeInDuration: const Duration(milliseconds: 100),
-            placeholder: const AssetImage('assets/images/placeholder_image.png'),
-            image: NetworkImage(currentWeather!.iconPath),
-            fit: BoxFit.fitHeight,
+        InkWell(
+          onTap: () => Navigator.of(context).pushNamed(WeatherDetailsPage.routeName,
+              arguments: WeatherDetails(
+                currentWeather!.iconPath,
+                tempMin: currentWeather!.tempMin,
+                tempMax: currentWeather!.tempMax,
+                description: currentWeather!.description,
+              )),
+          child: Hero(
+            tag: 'weather_image',
+            child: WeatherImageWidget(
+              iconPath: currentWeather!.iconPath,
+              imageHeight: 240,
+            ),
           ),
         ),
         Text(

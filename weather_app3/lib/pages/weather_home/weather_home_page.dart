@@ -39,14 +39,6 @@ class WeatherHomePage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.of(context).pushNamed(WeatherDetailsPage.routeName),
-          child: const Icon(
-            Icons.refresh,
-            size: 30,
-          ),
-        ),
       ),
     );
   }

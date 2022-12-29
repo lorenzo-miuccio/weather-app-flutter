@@ -27,38 +27,34 @@ Future<void> main() async {
 
   final weatherDB = await $FloorWeatherDatabase.databaseBuilder('weather_database.db').build();
   final weatherDBService = WeatherDBService(weatherDao: weatherDB.weatherDao);
-  runApp(MyApp(
-    env: Env.prod,
-    weatherDBService: weatherDBService,
+
+  final weatherApiService = WeatherApiServiceImpl();
+
+  runApp(RepositoryProvider<WeatherRepository>(
+    create: (_) => WeatherRepository(
+      apiService: weatherApiService,
+      dbService: weatherDBService,
+    ),
+    child: const MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  final Env env;
-  final WeatherDBService weatherDBService;
-
-  const MyApp({required this.env, required this.weatherDBService, super.key});
+  const MyApp({super.key});
 
   //Future<WeatherDatabase> _getDatabase() => $FloorWeatherDatabase.databaseBuilder('weather_database.db').build();
 
   @override
   Widget build(BuildContext context) {
-    final weatherApiService = env == Env.prod ? WeatherApiServiceImpl() : WeatherApiServiceMock();
 
-    return RepositoryProvider<WeatherRepository>(
-      create: (_) => WeatherRepository(
-        apiService: weatherApiService,
-        dbService: weatherDBService,
-      ),
-      child: MaterialApp(
-        title: 'Skill Assessment',
-        theme: appTheme,
-        routes: {
-          '/': (context) => const WeatherHomePageConnector(),
-          WeatherDetailsPage.routeName: (context) => const WeatherDetailsPage(),
-        },
-        //initialRoute: '/',
-      ),
+    return MaterialApp(
+      title: 'Skill Assessment',
+      theme: appTheme,
+      routes: {
+        '/': (context) => const WeatherHomePageConnector(),
+        WeatherDetailsPage.routeName: (context) => const WeatherDetailsPage(),
+      },
+      //initialRoute: '/',
     );
   }
 }

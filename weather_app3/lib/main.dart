@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/databases/weather_dao.dart';
 import 'package:weather_app/databases/weather_database.dart';
 import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/pages/weather_home/weather_home_page_connector.dart';
 import 'package:weather_app/services/weather_api_service.dart';
+import 'package:weather_app/services/weather_db_service.dart';
 import 'package:weather_app/theme.dart';
 
 enum Env {
@@ -25,18 +25,18 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final weatherDB = await $FloorWeatherDatabase.databaseBuilder('weather_database.db').build();
-  final weatherDao = weatherDB.weatherDao;
+  final weatherDBService = WeatherDBService(weatherDao: weatherDB.weatherDao);
   runApp(MyApp(
     env: Env.prod,
-    weatherDao: weatherDao,
+    weatherDBService: weatherDBService,
   ));
 }
 
 class MyApp extends StatelessWidget {
   final Env env;
-  final WeatherDao weatherDao;
+  final WeatherDBService weatherDBService;
 
-  const MyApp({required this.env, required this.weatherDao, super.key});
+  const MyApp({required this.env, required this.weatherDBService, super.key});
 
   //Future<WeatherDatabase> _getDatabase() => $FloorWeatherDatabase.databaseBuilder('weather_database.db').build();
 
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
     return RepositoryProvider<WeatherRepository>(
       create: (_) => WeatherRepository(
         apiService: weatherApiService,
-        weatherDao: weatherDao,
+        dbService: weatherDBService,
       ),
       child: MaterialApp(
         title: 'Skill Assessment',

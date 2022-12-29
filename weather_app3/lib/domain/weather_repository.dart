@@ -1,27 +1,27 @@
-import 'package:weather_app/databases/weather_dao.dart';
 import 'package:weather_app/models/api_response_entities/weather_resp.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/services/weather_api_service.dart';
+import 'package:weather_app/services/weather_db_service.dart';
 
 class WeatherRepository {
   final WeatherApiService _apiService;
-  final WeatherDao _weatherDao;
+  final WeatherDBService _dbService;
 
-  WeatherRepository({apiService, weatherDao})
+  WeatherRepository({apiService, dbService})
       : _apiService = apiService,
-        _weatherDao = weatherDao;
+        _dbService = dbService;
 
   Future<Weather> getRemoteWeatherByCityId(String cityId) =>
       _apiService.getWeatherByCityId(cityId).then((value) {
         final currentWeather = value.toEntity();
-        _weatherDao.insertWeather(currentWeather);
+        _dbService.insertWeather(currentWeather);
         return currentWeather;
       });
 
+  Future<Weather> getLocalWeatherByCityId(String cityId) =>
+      _dbService.getWeatherByCityId(cityId);
+
 }
-
-
-
 
 extension _WeatherRespToEntityExtension on WeatherResp {
   Weather toEntity() {

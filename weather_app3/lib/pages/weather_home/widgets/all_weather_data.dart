@@ -39,8 +39,6 @@ class AllWeatherData extends StatelessWidget {
     final List<List<SpecificWeatherData>> allSpecificWeatherData = [sunDataList, otherWeatherDataList];
 
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
           height: 280,

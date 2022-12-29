@@ -9,6 +9,6 @@ class SharedPreferencesService {
 
   static Future<String> getPreferredCityId() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('city') ?? 'Roma,IT';
+    return prefs.getString('city') ?? 'Rome,IT';
   }
 }

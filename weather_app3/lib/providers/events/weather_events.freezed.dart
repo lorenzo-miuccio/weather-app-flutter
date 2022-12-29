@@ -20,32 +20,38 @@ mixin _$WeatherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String cityId) fetchRequested,
+    required TResult Function(String cityId) newCitySelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String cityId)? fetchRequested,
+    TResult? Function(String cityId)? newCitySelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String cityId)? fetchRequested,
+    TResult Function(String cityId)? newCitySelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(WeatherFetchRequested value) fetchRequested,
+    required TResult Function(NewCitySelected value) newCitySelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(WeatherFetchRequested value)? fetchRequested,
+    TResult? Function(NewCitySelected value)? newCitySelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WeatherFetchRequested value)? fetchRequested,
+    TResult Function(NewCitySelected value)? newCitySelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -156,6 +162,7 @@ class _$WeatherFetchRequested implements WeatherFetchRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String cityId) fetchRequested,
+    required TResult Function(String cityId) newCitySelected,
   }) {
     return fetchRequested(cityId);
   }
@@ -164,6 +171,7 @@ class _$WeatherFetchRequested implements WeatherFetchRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String cityId)? fetchRequested,
+    TResult? Function(String cityId)? newCitySelected,
   }) {
     return fetchRequested?.call(cityId);
   }
@@ -172,6 +180,7 @@ class _$WeatherFetchRequested implements WeatherFetchRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String cityId)? fetchRequested,
+    TResult Function(String cityId)? newCitySelected,
     required TResult orElse(),
   }) {
     if (fetchRequested != null) {
@@ -184,6 +193,7 @@ class _$WeatherFetchRequested implements WeatherFetchRequested {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(WeatherFetchRequested value) fetchRequested,
+    required TResult Function(NewCitySelected value) newCitySelected,
   }) {
     return fetchRequested(this);
   }
@@ -192,6 +202,7 @@ class _$WeatherFetchRequested implements WeatherFetchRequested {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(WeatherFetchRequested value)? fetchRequested,
+    TResult? Function(NewCitySelected value)? newCitySelected,
   }) {
     return fetchRequested?.call(this);
   }
@@ -200,6 +211,7 @@ class _$WeatherFetchRequested implements WeatherFetchRequested {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WeatherFetchRequested value)? fetchRequested,
+    TResult Function(NewCitySelected value)? newCitySelected,
     required TResult orElse(),
   }) {
     if (fetchRequested != null) {
@@ -218,5 +230,142 @@ abstract class WeatherFetchRequested implements WeatherEvent {
   @override
   @JsonKey(ignore: true)
   _$$WeatherFetchRequestedCopyWith<_$WeatherFetchRequested> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$NewCitySelectedCopyWith<$Res>
+    implements $WeatherEventCopyWith<$Res> {
+  factory _$$NewCitySelectedCopyWith(
+          _$NewCitySelected value, $Res Function(_$NewCitySelected) then) =
+      __$$NewCitySelectedCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String cityId});
+}
+
+/// @nodoc
+class __$$NewCitySelectedCopyWithImpl<$Res>
+    extends _$WeatherEventCopyWithImpl<$Res, _$NewCitySelected>
+    implements _$$NewCitySelectedCopyWith<$Res> {
+  __$$NewCitySelectedCopyWithImpl(
+      _$NewCitySelected _value, $Res Function(_$NewCitySelected) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cityId = null,
+  }) {
+    return _then(_$NewCitySelected(
+      null == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NewCitySelected implements NewCitySelected {
+  const _$NewCitySelected(this.cityId);
+
+  @override
+  final String cityId;
+
+  @override
+  String toString() {
+    return 'WeatherEvent.newCitySelected(cityId: $cityId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NewCitySelected &&
+            (identical(other.cityId, cityId) || other.cityId == cityId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, cityId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NewCitySelectedCopyWith<_$NewCitySelected> get copyWith =>
+      __$$NewCitySelectedCopyWithImpl<_$NewCitySelected>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String cityId) fetchRequested,
+    required TResult Function(String cityId) newCitySelected,
+  }) {
+    return newCitySelected(cityId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String cityId)? fetchRequested,
+    TResult? Function(String cityId)? newCitySelected,
+  }) {
+    return newCitySelected?.call(cityId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String cityId)? fetchRequested,
+    TResult Function(String cityId)? newCitySelected,
+    required TResult orElse(),
+  }) {
+    if (newCitySelected != null) {
+      return newCitySelected(cityId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WeatherFetchRequested value) fetchRequested,
+    required TResult Function(NewCitySelected value) newCitySelected,
+  }) {
+    return newCitySelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WeatherFetchRequested value)? fetchRequested,
+    TResult? Function(NewCitySelected value)? newCitySelected,
+  }) {
+    return newCitySelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WeatherFetchRequested value)? fetchRequested,
+    TResult Function(NewCitySelected value)? newCitySelected,
+    required TResult orElse(),
+  }) {
+    if (newCitySelected != null) {
+      return newCitySelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NewCitySelected implements WeatherEvent {
+  const factory NewCitySelected(final String cityId) = _$NewCitySelected;
+
+  @override
+  String get cityId;
+  @override
+  @JsonKey(ignore: true)
+  _$$NewCitySelectedCopyWith<_$NewCitySelected> get copyWith =>
       throw _privateConstructorUsedError;
 }

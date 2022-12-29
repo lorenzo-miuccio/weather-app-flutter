@@ -26,7 +26,7 @@ class DropdownMenu extends StatelessWidget {
                       value: city,
                       enabled: selectedCity != city,
                       child: Text(
-                        city.cityName,
+                        city.translatedCityName,
                         style: TextStyle(color: selectedCity != city ? Colors.black : Colors.grey),
                       ),
                     ),

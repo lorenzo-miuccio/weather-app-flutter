@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/bloc/states/weather_fetch_state.dart';
 import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/exceptions/api_exceptions.dart';
-import 'package:weather_app/providers/states/weather_fetch_state.dart';
 
 class WeatherDetailsCubit extends Cubit<WeatherFetchState> {
   final WeatherRepository _weatherRepo;

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/pages/weather_details/weather_details_page.dart';
+import 'package:weather_app/bloc/events/weather_events.dart';
+import 'package:weather_app/bloc/selected_city_cubit.dart';
+import 'package:weather_app/bloc/weather_bloc.dart';
 import 'package:weather_app/pages/weather_home/widgets/dropdown_menu.dart';
 import 'package:weather_app/pages/weather_home/widgets/weather_section.dart';
-import 'package:weather_app/providers/events/weather_events.dart';
-import 'package:weather_app/providers/selected_city_cubit.dart';
-import 'package:weather_app/providers/weather_bloc.dart';
 
 //Widget that displays whole page composed by the dropdown menu for city selection and weather report (WeatherSection)
 class WeatherHomePage extends StatelessWidget {

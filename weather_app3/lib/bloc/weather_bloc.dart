@@ -1,7 +1,7 @@
+import 'package:weather_app/bloc/events/weather_events.dart';
 import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/exceptions/api_exceptions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/providers/events/weather_events.dart';
 
 import 'states/weather_fetch_state.dart';
 

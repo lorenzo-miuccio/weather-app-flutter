@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/bloc/weather_details_cubit.dart';
 import 'package:weather_app/models/specific_weather_data.dart';
 import 'package:weather_app/models/weather_details.dart';
 import 'package:weather_app/pages/common_widgets/error_widgets/generic_error.dart';
 import 'package:weather_app/pages/common_widgets/specific_weather_data_row.dart';
 import 'package:weather_app/pages/common_widgets/weather_image.dart';
-import 'package:weather_app/providers/weather_details_cubit.dart';
 
 class DetailsWidget extends StatelessWidget {
   const DetailsWidget({super.key});

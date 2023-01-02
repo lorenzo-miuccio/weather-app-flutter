@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/bloc/events/weather_events.dart';
+import 'package:weather_app/bloc/selected_city_cubit.dart';
+import 'package:weather_app/bloc/weather_bloc.dart';
 import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/pages/common_widgets/error_widgets/generic_error.dart';
 import 'package:weather_app/pages/weather_home/weather_home_page.dart';
-import 'package:weather_app/providers/events/weather_events.dart';
-import 'package:weather_app/providers/selected_city_cubit.dart';
-import 'package:weather_app/providers/weather_bloc.dart';
+
 
 class WeatherHomePageConnector extends StatelessWidget {
   const WeatherHomePageConnector({Key? key}) : super(key: key);

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/bloc/events/weather_events.dart';
+import 'package:weather_app/bloc/selected_city_cubit.dart';
+import 'package:weather_app/bloc/weather_bloc.dart';
 import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/models/city.dart';
-import 'package:weather_app/providers/events/weather_events.dart';
-import 'package:weather_app/providers/selected_city_cubit.dart';
-import 'package:weather_app/providers/weather_bloc.dart';
 import 'package:weather_app/services/shared_preferences_service.dart';
 
 class DropdownMenu extends StatelessWidget {

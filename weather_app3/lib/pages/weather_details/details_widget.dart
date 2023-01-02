@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/models/specific_weather_data.dart';
 import 'package:weather_app/models/weather_details.dart';
-import 'package:weather_app/pages/weather_home/widgets/error_widgets/generic_error.dart';
-import 'package:weather_app/pages/weather_home/widgets/specific_weather_data_row.dart';
-import 'package:weather_app/pages/weather_home/widgets/weather_image.dart';
+import 'package:weather_app/pages/common_widgets/error_widgets/generic_error.dart';
+import 'package:weather_app/pages/common_widgets/specific_weather_data_row.dart';
+import 'package:weather_app/pages/common_widgets/weather_image.dart';
 import 'package:weather_app/providers/weather_details_cubit.dart';
 
 class DetailsWidget extends StatelessWidget {
@@ -19,7 +18,7 @@ class DetailsWidget extends StatelessWidget {
 
     WeatherDetails? details;
 
-    weatherFetchState.maybeWhen((value) => details = value.toDetails(),
+    weatherFetchState.maybeWhen((value) => details = value as WeatherDetails,
         orElse: () => const GenericErrorWidget());
 
     return SafeArea(

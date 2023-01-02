@@ -20,38 +20,32 @@ mixin _$WeatherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String cityId) fetchRequested,
-    required TResult Function(String cityId) detailsRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String cityId)? fetchRequested,
-    TResult? Function(String cityId)? detailsRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String cityId)? fetchRequested,
-    TResult Function(String cityId)? detailsRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(WeatherFetchReq value) fetchRequested,
-    required TResult Function(WeatherDetailsReq value) detailsRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(WeatherFetchReq value)? fetchRequested,
-    TResult? Function(WeatherDetailsReq value)? detailsRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WeatherFetchReq value)? fetchRequested,
-    TResult Function(WeatherDetailsReq value)? detailsRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -161,7 +155,6 @@ class _$WeatherFetchReq implements WeatherFetchReq {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String cityId) fetchRequested,
-    required TResult Function(String cityId) detailsRequested,
   }) {
     return fetchRequested(cityId);
   }
@@ -170,7 +163,6 @@ class _$WeatherFetchReq implements WeatherFetchReq {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String cityId)? fetchRequested,
-    TResult? Function(String cityId)? detailsRequested,
   }) {
     return fetchRequested?.call(cityId);
   }
@@ -179,7 +171,6 @@ class _$WeatherFetchReq implements WeatherFetchReq {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String cityId)? fetchRequested,
-    TResult Function(String cityId)? detailsRequested,
     required TResult orElse(),
   }) {
     if (fetchRequested != null) {
@@ -192,7 +183,6 @@ class _$WeatherFetchReq implements WeatherFetchReq {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(WeatherFetchReq value) fetchRequested,
-    required TResult Function(WeatherDetailsReq value) detailsRequested,
   }) {
     return fetchRequested(this);
   }
@@ -201,7 +191,6 @@ class _$WeatherFetchReq implements WeatherFetchReq {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(WeatherFetchReq value)? fetchRequested,
-    TResult? Function(WeatherDetailsReq value)? detailsRequested,
   }) {
     return fetchRequested?.call(this);
   }
@@ -210,7 +199,6 @@ class _$WeatherFetchReq implements WeatherFetchReq {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WeatherFetchReq value)? fetchRequested,
-    TResult Function(WeatherDetailsReq value)? detailsRequested,
     required TResult orElse(),
   }) {
     if (fetchRequested != null) {
@@ -228,142 +216,5 @@ abstract class WeatherFetchReq implements WeatherEvent {
   @override
   @JsonKey(ignore: true)
   _$$WeatherFetchReqCopyWith<_$WeatherFetchReq> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$WeatherDetailsReqCopyWith<$Res>
-    implements $WeatherEventCopyWith<$Res> {
-  factory _$$WeatherDetailsReqCopyWith(
-          _$WeatherDetailsReq value, $Res Function(_$WeatherDetailsReq) then) =
-      __$$WeatherDetailsReqCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String cityId});
-}
-
-/// @nodoc
-class __$$WeatherDetailsReqCopyWithImpl<$Res>
-    extends _$WeatherEventCopyWithImpl<$Res, _$WeatherDetailsReq>
-    implements _$$WeatherDetailsReqCopyWith<$Res> {
-  __$$WeatherDetailsReqCopyWithImpl(
-      _$WeatherDetailsReq _value, $Res Function(_$WeatherDetailsReq) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? cityId = null,
-  }) {
-    return _then(_$WeatherDetailsReq(
-      null == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$WeatherDetailsReq implements WeatherDetailsReq {
-  const _$WeatherDetailsReq(this.cityId);
-
-  @override
-  final String cityId;
-
-  @override
-  String toString() {
-    return 'WeatherEvent.detailsRequested(cityId: $cityId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$WeatherDetailsReq &&
-            (identical(other.cityId, cityId) || other.cityId == cityId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, cityId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$WeatherDetailsReqCopyWith<_$WeatherDetailsReq> get copyWith =>
-      __$$WeatherDetailsReqCopyWithImpl<_$WeatherDetailsReq>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String cityId) fetchRequested,
-    required TResult Function(String cityId) detailsRequested,
-  }) {
-    return detailsRequested(cityId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String cityId)? fetchRequested,
-    TResult? Function(String cityId)? detailsRequested,
-  }) {
-    return detailsRequested?.call(cityId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String cityId)? fetchRequested,
-    TResult Function(String cityId)? detailsRequested,
-    required TResult orElse(),
-  }) {
-    if (detailsRequested != null) {
-      return detailsRequested(cityId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WeatherFetchReq value) fetchRequested,
-    required TResult Function(WeatherDetailsReq value) detailsRequested,
-  }) {
-    return detailsRequested(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(WeatherFetchReq value)? fetchRequested,
-    TResult? Function(WeatherDetailsReq value)? detailsRequested,
-  }) {
-    return detailsRequested?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WeatherFetchReq value)? fetchRequested,
-    TResult Function(WeatherDetailsReq value)? detailsRequested,
-    required TResult orElse(),
-  }) {
-    if (detailsRequested != null) {
-      return detailsRequested(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class WeatherDetailsReq implements WeatherEvent {
-  const factory WeatherDetailsReq(final String cityId) = _$WeatherDetailsReq;
-
-  @override
-  String get cityId;
-  @override
-  @JsonKey(ignore: true)
-  _$$WeatherDetailsReqCopyWith<_$WeatherDetailsReq> get copyWith =>
       throw _privateConstructorUsedError;
 }

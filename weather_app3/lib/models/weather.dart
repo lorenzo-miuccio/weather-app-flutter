@@ -1,8 +1,10 @@
 // class containing all weather information used by the app to display the current weather
 import 'package:floor/floor.dart';
 
+abstract class WeatherInterface{}
+
 @entity
-class Weather {
+class Weather implements WeatherInterface {
   @primaryKey
   final String cityId;
 

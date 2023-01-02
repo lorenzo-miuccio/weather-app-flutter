@@ -1,4 +1,6 @@
-class WeatherDetails {
+import 'package:weather_app/models/weather.dart';
+
+class WeatherDetails implements WeatherInterface{
   final double tempMin, tempMax;
   final String description;
   final String iconPath;

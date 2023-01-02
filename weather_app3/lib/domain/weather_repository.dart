@@ -21,24 +21,27 @@ class WeatherRepository {
           ? _getRemoteWeatherByCityId(cityId)
           : _getLocalWeatherByCityId(cityId);
 
-  Future<WeatherDetails> getWeatherDetailsByCityId() =>
+  Future<WeatherDetails> getWeatherDetails() =>
       _getRemoteWeatherByCityId(previousCityId!).then((value) => value.toDetails());
 
   Future<Weather> _getRemoteWeatherByCityId(String cityId) =>
       _apiService.getWeatherByCityId(cityId).then((value) {
-        _restartTimer(cityId);
         previousCityId = cityId;
         final currentWeather = value.toEntity();
         _dbService.insertWeather(currentWeather);
+        _restartTimer(cityId);
         return currentWeather;
+      }).catchError((e) {
+        _fetchRemoteTimer?.cancel();
       });
 
-  Future<Weather> _getLocalWeatherByCityId(String cityId) => _dbService.getWeatherByCityId(cityId);
+  Future<Weather> _getLocalWeatherByCityId(String cityId) =>
+      _dbService.getWeatherByCityId(cityId).catchError((e) => _getRemoteWeatherByCityId(cityId));
 
   void _restartTimer(String cityId) {
     _fetchRemoteTimer?.cancel();
     _fetchRemoteTimer =
-        Timer.periodic(const Duration(seconds: 10), (timer) => _getRemoteWeatherByCityId(cityId));
+        Timer.periodic(const Duration(seconds: 30), (timer) => _getRemoteWeatherByCityId(cityId));
   }
 }
 
@@ -51,6 +54,7 @@ extension _WeatherRespToEntityExtension on WeatherResp {
     DateTime sunset = sys.sunset.add(Duration(seconds: timezoneInSeconds));
 
     return Weather(
+      lastRemoteFetch: DateTime.now(),
       temperature: main.temp,
       humidity: main.humidity,
       windSpeed: wind.speed,
@@ -65,7 +69,7 @@ extension _WeatherRespToEntityExtension on WeatherResp {
   }
 }
 
-extension _WeatherToDetails on Weather {
+extension _WeatherToDetailsExtension on Weather {
   WeatherDetails toDetails() => WeatherDetails(
         tempMin: tempMin,
         tempMax: tempMax,

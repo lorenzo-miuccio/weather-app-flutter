@@ -18,7 +18,8 @@ class AllWeatherData extends StatelessWidget {
 
     Weather? currentWeather;
 
-    weatherFetchState.maybeMap(hasData: (value) => currentWeather = value.currentWeather as Weather,
+    weatherFetchState.maybeMap(
+        hasData: (value) => currentWeather = value.currentWeather as Weather,
         orElse: () => currentWeather = null);
 
     if (currentWeather == null) return const GenericErrorWidget();
@@ -48,13 +49,12 @@ class AllWeatherData extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-          onTap: () => Navigator.of(context).pushNamed(WeatherDetailsPageConnector.routeName),
-          child: Hero(
-            tag: 'weather_image',
-            child: WeatherImageWidget(
-              iconPath: currentWeather!.iconPath,
-              imageHeight: 240,
-            ),
+          onTap: () => Navigator.of(context)
+              .pushNamed(WeatherDetailsPageConnector.routeName)
+              .then((_) => context.read<WeatherCubit>().refreshWeatherData()),
+          child: WeatherImageWidget(
+            iconPath: currentWeather!.iconPath,
+            imageHeight: 240,
           ),
         ),
         Text(
@@ -67,7 +67,17 @@ class AllWeatherData extends StatelessWidget {
         const SizedBox(
           height: 50,
         ),
-        ...allSpecificWeatherData.map((dataRow) => SpecificWeatherDataRow(dataRow))
+        ...allSpecificWeatherData.map((dataRow) => SpecificWeatherDataRow(dataRow)),
+        const Spacer(),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 30),
+          child: Text(
+              'Last update: ${DateTime.now().difference(currentWeather!.lastRemoteFetch).inSeconds} s',
+              style: const TextStyle(
+                color: Colors.blueGrey,
+                fontSize: 18,
+              )),
+        )
       ],
     );
   }

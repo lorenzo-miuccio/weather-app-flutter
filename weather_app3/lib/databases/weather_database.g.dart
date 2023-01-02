@@ -85,7 +85,7 @@ class _$WeatherDatabase extends WeatherDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Weather` (`cityId` TEXT NOT NULL, `iconPath` TEXT NOT NULL, `temperature` REAL NOT NULL, `windSpeed` REAL NOT NULL, `humidity` INTEGER NOT NULL, `sunrise` INTEGER NOT NULL, `sunset` INTEGER NOT NULL, `tempMin` REAL NOT NULL, `tempMax` REAL NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY (`cityId`))');
+            'CREATE TABLE IF NOT EXISTS `Weather` (`cityId` TEXT NOT NULL, `iconPath` TEXT NOT NULL, `temperature` REAL NOT NULL, `windSpeed` REAL NOT NULL, `humidity` INTEGER NOT NULL, `sunrise` INTEGER NOT NULL, `sunset` INTEGER NOT NULL, `lastRemoteFetch` INTEGER NOT NULL, `tempMin` REAL NOT NULL, `tempMax` REAL NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY (`cityId`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -115,6 +115,8 @@ class _$WeatherDao extends WeatherDao {
                   'humidity': item.humidity,
                   'sunrise': _dateTimeConverter.encode(item.sunrise),
                   'sunset': _dateTimeConverter.encode(item.sunset),
+                  'lastRemoteFetch':
+                      _dateTimeConverter.encode(item.lastRemoteFetch),
                   'tempMin': item.tempMin,
                   'tempMax': item.tempMax,
                   'description': item.description
@@ -132,6 +134,8 @@ class _$WeatherDao extends WeatherDao {
   Future<Weather?> findWeatherByCityId(String id) async {
     return _queryAdapter.query('SELECT * FROM Weather WHERE cityId = ?1',
         mapper: (Map<String, Object?> row) => Weather(
+            lastRemoteFetch:
+                _dateTimeConverter.decode(row['lastRemoteFetch'] as int),
             tempMax: row['tempMax'] as double,
             description: row['description'] as String,
             temperature: row['temperature'] as double,
@@ -149,6 +153,8 @@ class _$WeatherDao extends WeatherDao {
   Future<List<Weather>> findAll() async {
     return _queryAdapter.queryList('SELECT * FROM Weather',
         mapper: (Map<String, Object?> row) => Weather(
+            lastRemoteFetch:
+                _dateTimeConverter.decode(row['lastRemoteFetch'] as int),
             tempMax: row['tempMax'] as double,
             description: row['description'] as String,
             temperature: row['temperature'] as double,

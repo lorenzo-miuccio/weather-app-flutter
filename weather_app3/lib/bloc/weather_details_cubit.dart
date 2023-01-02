@@ -13,7 +13,7 @@ class WeatherDetailsCubit extends Cubit<WeatherFetchState> {
   Future<void> getWeatherDetails() async {
     emit(WeatherFetchState.loading(selectedCityId: state.selectedCityId));
     await _weatherRepo
-        .getWeatherDetailsByCityId()
+        .getWeatherDetails()
         .then((value) => emit(WeatherFetchState.hasData(currentWeather: value, selectedCityId: state.selectedCityId)))
         .catchError((e) {
       if (e is ConnectionException) {

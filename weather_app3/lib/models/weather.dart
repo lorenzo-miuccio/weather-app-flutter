@@ -1,7 +1,7 @@
 // class containing all weather information used by the app to display the current weather
 import 'package:floor/floor.dart';
 
-abstract class WeatherInterface{}
+abstract class WeatherInterface {}
 
 @entity
 class Weather implements WeatherInterface {
@@ -14,10 +14,12 @@ class Weather implements WeatherInterface {
   final int humidity;
   final DateTime sunrise;
   final DateTime sunset;
+  final DateTime lastRemoteFetch;
   final double tempMin, tempMax;
   final String description;
 
   Weather({
+    required this.lastRemoteFetch,
     required this.tempMax,
     required this.description,
     required this.temperature,

@@ -36,9 +36,7 @@ class DetailsWidget extends StatelessWidget {
               Stack(
                 alignment: AlignmentDirectional.bottomCenter,
                 children: [
-                  Hero(
-                      tag: 'weather_image',
-                      child: WeatherImageWidget(iconPath: details!.iconPath, imageHeight: 350)),
+                  WeatherImageWidget(iconPath: details!.iconPath, imageHeight: 350),
                   Text(
                     details!.description,
                     style: const TextStyle(fontSize: 28),

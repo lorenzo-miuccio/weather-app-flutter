@@ -1,6 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class CityKeyValueService {
 
   Future<void> updateSavedCityId(String cityId) async {

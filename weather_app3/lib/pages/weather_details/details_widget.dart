@@ -1,16 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/models/specific_weather_data.dart';
 import 'package:weather_app/models/weather_details.dart';
 import 'package:weather_app/pages/weather_home/widgets/specific_weather_data_row.dart';
 import 'package:weather_app/pages/weather_home/widgets/weather_image.dart';
 
 class DetailsWidget extends StatelessWidget {
-  final WeatherDetails details;
 
-  const DetailsWidget(this.details, {Key? key}) : super(key: key);
+  const DetailsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final WeatherDetails details = RepositoryProvider.of<WeatherRepository>(context).weatherDetails!;
+
     return Column(
       children: [
         Stack(

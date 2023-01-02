@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:weather_app/models/api_response_entities/weather_resp.dart';
 import 'package:weather_app/models/weather.dart';
+import 'package:weather_app/models/weather_details.dart';
 import 'package:weather_app/services/weather_api_service.dart';
 import 'package:weather_app/services/weather_db_service.dart';
 
@@ -9,31 +10,25 @@ class WeatherRepository {
   final WeatherApiService _apiService;
   final WeatherDBService _dbService;
   Timer? _fetchRemoteTimer;
-  String? _previousCityId;
+  WeatherDetails? weatherDetails;
 
   WeatherRepository({apiService, dbService})
       : _apiService = apiService,
         _dbService = dbService;
 
-  Future<Weather> getWeatherByCityId(String cityId) {
+  Future<Weather> getWeatherByCityId(String cityId) =>
+      (_fetchRemoteTimer == null || cityId != weatherDetails?.cityId)
+          ? _getRemoteWeatherByCityId(cityId)
+          : _getLocalWeatherByCityId(cityId);
 
-    if(_fetchRemoteTimer == null || cityId != _previousCityId) {
-      _previousCityId = cityId;
-      return _getRemoteWeatherByCityId(cityId);
-    } else {
-      _previousCityId = cityId;
-      return _getLocalWeatherByCityId(cityId);
-    }
-  }
-
-  Future<Weather> _getRemoteWeatherByCityId(String cityId) {
-    _restartTimer(cityId);
-    return _apiService.getWeatherByCityId(cityId).then((value) {
-      final currentWeather = value.toEntity();
-      _dbService.insertWeather(currentWeather);
-      return currentWeather;
-    });
-  }
+  Future<Weather> _getRemoteWeatherByCityId(String cityId) =>
+      _apiService.getWeatherByCityId(cityId).then((value) {
+        _restartTimer(cityId);
+        final currentWeather = value.toEntity();
+        _dbService.insertWeather(currentWeather);
+        weatherDetails = currentWeather.toDetails();
+        return currentWeather;
+      });
 
   Future<Weather> _getLocalWeatherByCityId(String cityId) => _dbService.getWeatherByCityId(cityId);
 
@@ -62,7 +57,17 @@ extension _WeatherRespToEntityExtension on WeatherResp {
       tempMax: main.tempMax,
       tempMin: main.tempMin,
       description: description,
-      cityId: '$cityName,${sys.countryId}',
+      cityId: '$cityName, ${sys.countryId}',
     );
   }
+}
+
+extension _WeatherToDetails on Weather {
+  WeatherDetails toDetails() => WeatherDetails(
+        tempMin: tempMin,
+        tempMax: tempMax,
+        iconPath: iconPath,
+        cityId: cityId,
+        description: description,
+      );
 }

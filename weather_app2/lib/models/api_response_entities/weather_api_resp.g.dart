@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'weather_api_response.dart';
+part of 'weather_api_resp.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherApiResponse _$WeatherApiResponseFromJson(Map<String, dynamic> json) =>
-    WeatherApiResponse(
+WeatherApiResp _$WeatherApiResponseFromJson(Map<String, dynamic> json) =>
+    WeatherApiResp(
       weather: (json['weather'] as List<dynamic>)
           .map((e) =>
               WeatherDescriptionEntity.fromJson(e as Map<String, dynamic>))
@@ -18,7 +18,7 @@ WeatherApiResponse _$WeatherApiResponseFromJson(Map<String, dynamic> json) =>
       timezoneInSeconds: json['timezone'] as int,
     );
 
-Map<String, dynamic> _$WeatherApiResponseToJson(WeatherApiResponse instance) =>
+Map<String, dynamic> _$WeatherApiResponseToJson(WeatherApiResp instance) =>
     <String, dynamic>{
       'weather': instance.weather,
       'main': instance.main,

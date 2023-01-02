@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:weather_app/models/specific_weather_data.dart';
-import 'package:weather_app/models/weather_entity.dart';
+import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/provider/city_weather_notifier.dart';
 import 'package:weather_app/provider/weather_fetch_state.dart';
 import 'package:weather_app/widgets/error_widgets/generic_error.dart';
@@ -49,7 +49,7 @@ class _AllWeatherDataState extends State<AllWeatherData>
 
     WeatherFetchState? fetchState = CityWeatherNotifier.of(context).fetchState;
 
-    WeatherEntity? currentWeather;
+    Weather? currentWeather;
 
     if(fetchState != null) {
       fetchState.maybeWhen((value) => currentWeather = value,

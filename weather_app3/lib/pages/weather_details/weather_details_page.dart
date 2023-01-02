@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/models/weather_details.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/pages/weather_details/details_widget.dart';
 
 class WeatherDetailsPage extends StatelessWidget {
@@ -9,22 +10,19 @@ class WeatherDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final WeatherDetails details = ModalRoute.of(context)!.settings.arguments as WeatherDetails;
+    final String cityId = RepositoryProvider.of<WeatherRepository>(context).weatherDetails!.cityId;
 
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
           titleTextStyle: Theme.of(context).textTheme.headline1,
-          title: const Text(
-            'Weather Details',
-          ),
+          title: Text(cityId),
           backgroundColor: Colors.transparent,
           elevation: 0,
           toolbarHeight: 150,
         ),
-        body: DetailsWidget(details),
+        body: const DetailsWidget(),
       ),
     );
   }

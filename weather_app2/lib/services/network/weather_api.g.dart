@@ -21,7 +21,7 @@ class _WeatherApi implements WeatherApi {
   String? baseUrl;
 
   @override
-  Future<WeatherApiResponse> GETWeatherByCityId({
+  Future<WeatherApiResp> GETWeatherByCityId({
     required cityId,
     units = 'metric',
     apiKey = 'bb067dbc70fcc777779f5f394585b728',
@@ -35,7 +35,7 @@ class _WeatherApi implements WeatherApi {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<WeatherApiResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<WeatherApiResp>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -47,7 +47,7 @@ class _WeatherApi implements WeatherApi {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = WeatherApiResponse.fromJson(_result.data!);
+    final value = WeatherApiResp.fromJson(_result.data!);
     return value;
   }
 

@@ -9,5 +9,5 @@ class City {
   const City({required this.cityName, required this.countryId, String? translatedName}):
     translatedCityName = translatedName ?? cityName;
 
-  String get id => '$cityName,$countryId';
+  String get id => '$cityName, $countryId';
 }

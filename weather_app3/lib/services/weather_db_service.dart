@@ -7,8 +7,7 @@ class WeatherDBService{
   WeatherDBService({required weatherDao}):
       _weatherDao = weatherDao;
 
-  Future<Weather> getWeatherByCityId(String cityId) =>
-      _weatherDao.findWeatherByCityId(cityId).then((value) => value ?? (throw Exception()));
+  Future<Weather> getWeatherByCityId(String cityId) => _weatherDao.findWeatherByCityId(cityId).then((value) => value ?? (throw Exception()));
 
   Future<void> insertWeather(Weather weather) => _weatherDao.insertWeather(weather);
 

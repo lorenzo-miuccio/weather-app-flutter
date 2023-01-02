@@ -9,4 +9,7 @@ abstract class WeatherDao {
 
   @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertWeather(Weather weather);
+
+  @Query('SELECT * FROM Weather')
+  Future<List<Weather>> findAll();
 }

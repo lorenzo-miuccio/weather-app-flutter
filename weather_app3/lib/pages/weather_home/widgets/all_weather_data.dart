@@ -49,13 +49,7 @@ class AllWeatherData extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-          onTap: () => Navigator.of(context).pushNamed(WeatherDetailsPage.routeName,
-              arguments: WeatherDetails(
-                currentWeather!.iconPath,
-                tempMin: currentWeather!.tempMin,
-                tempMax: currentWeather!.tempMax,
-                description: currentWeather!.description,
-              )),
+          onTap: () => Navigator.of(context).pushNamed(WeatherDetailsPage.routeName),
           child: Hero(
             tag: 'weather_image',
             child: WeatherImageWidget(

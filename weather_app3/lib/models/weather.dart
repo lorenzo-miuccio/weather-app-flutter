@@ -1,6 +1,5 @@
 // class containing all weather information used by the app to display the current weather
 import 'package:floor/floor.dart';
-import 'package:weather_app/databases/converter/datetime_converter.dart';
 
 @entity
 class Weather {
@@ -28,4 +27,7 @@ class Weather {
     required this.tempMin,
     required this.cityId,
   });
+
+  @override
+  String toString() => '$cityId: $temperature';
 }

@@ -146,6 +146,22 @@ class _$WeatherDao extends WeatherDao {
   }
 
   @override
+  Future<List<Weather>> findAll() async {
+    return _queryAdapter.queryList('SELECT * FROM Weather',
+        mapper: (Map<String, Object?> row) => Weather(
+            tempMax: row['tempMax'] as double,
+            description: row['description'] as String,
+            temperature: row['temperature'] as double,
+            humidity: row['humidity'] as int,
+            windSpeed: row['windSpeed'] as double,
+            sunrise: _dateTimeConverter.decode(row['sunrise'] as int),
+            sunset: _dateTimeConverter.decode(row['sunset'] as int),
+            iconPath: row['iconPath'] as String,
+            tempMin: row['tempMin'] as double,
+            cityId: row['cityId'] as String));
+  }
+
+  @override
   Future<void> insertWeather(Weather weather) async {
     await _weatherInsertionAdapter.insert(weather, OnConflictStrategy.replace);
   }

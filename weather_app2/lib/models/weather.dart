@@ -1,6 +1,6 @@
 // class containing all weather information used by the app to display the current weather
 
-class WeatherEntity {
+class Weather {
   final String iconPath;
   final double temperature;
   final double windSpeed;
@@ -8,7 +8,7 @@ class WeatherEntity {
   final DateTime sunrise;
   final DateTime sunset;
 
-  WeatherEntity({
+  Weather({
     required this.temperature,
     required this.humidity,
     required this.windSpeed,

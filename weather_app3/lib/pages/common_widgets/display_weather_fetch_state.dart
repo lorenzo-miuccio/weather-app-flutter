@@ -11,23 +11,24 @@ enum PageName {
   details,
 }
 
-
 class DisplayWeatherFetch extends StatelessWidget {
   final WeatherFetchState fetchState;
   final PageName page;
 
-  const DisplayWeatherFetch({Key? key, required this.fetchState, required this.page}) : super(key: key);
+  const DisplayWeatherFetch({Key? key, required this.fetchState, required this.page})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 350),
-      child: fetchState.when(
-            (currentWeather) => page == PageName.home? const AllWeatherData() : const DetailsWidget(),
-        loading: () => const LoadingWidget(),
-        error: (String? message) => const GenericErrorWidget(),
-        noConnectionError: (String? message) => const NoConnectionWidget(),
+      child: fetchState.map(
+        hasData: (value) => page == PageName.home ? const AllWeatherData() : const DetailsWidget(),
+        loading: (value) => const LoadingWidget(),
+        error: (value) => const GenericErrorWidget(),
+        noConnectionError: (value) => const NoConnectionWidget(),
       ),
-    );;
+    );
+    ;
   }
 }

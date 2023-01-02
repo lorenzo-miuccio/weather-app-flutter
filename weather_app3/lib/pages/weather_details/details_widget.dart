@@ -18,7 +18,7 @@ class DetailsWidget extends StatelessWidget {
 
     WeatherDetails? details;
 
-    weatherFetchState.maybeWhen((value) => details = value as WeatherDetails,
+    weatherFetchState.maybeMap(hasData: (value) => details = value.currentWeather as WeatherDetails,
         orElse: () => const GenericErrorWidget());
 
     return SafeArea(

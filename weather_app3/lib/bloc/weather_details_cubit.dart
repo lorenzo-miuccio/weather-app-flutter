@@ -8,7 +8,7 @@ class WeatherDetailsCubit extends Cubit<WeatherFetchState> {
 
   WeatherDetailsCubit({required WeatherRepository weatherRepo})
       : _weatherRepo = weatherRepo,
-        super(const WeatherFetchState.loading());
+        super(const WeatherFetchState.loading(weatherRepo.previousCityId));
 
   Future<void> getWeatherDetails() async {
     emit(const WeatherFetchState.loading());

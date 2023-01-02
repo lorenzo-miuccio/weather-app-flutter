@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/bloc/weather_bloc.dart';
+import 'package:weather_app/bloc/weather_cubit.dart';
 import 'package:weather_app/models/specific_weather_data.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/pages/common_widgets/error_widgets/generic_error.dart';
@@ -14,11 +14,11 @@ class AllWeatherData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final weatherFetchState = BlocProvider.of<WeatherBloc>(context, listen: false).state;
+    final weatherFetchState = BlocProvider.of<WeatherCubit>(context, listen: false).state;
 
     Weather? currentWeather;
 
-    weatherFetchState.maybeWhen((value) => currentWeather = value as Weather,
+    weatherFetchState.maybeMap(hasData: (value) => currentWeather = value.currentWeather as Weather,
         orElse: () => currentWeather = null);
 
     if (currentWeather == null) return const GenericErrorWidget();

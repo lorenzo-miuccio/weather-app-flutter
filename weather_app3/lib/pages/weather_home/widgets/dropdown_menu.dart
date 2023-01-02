@@ -5,7 +5,6 @@ import 'package:weather_app/bloc/selected_city_cubit.dart';
 import 'package:weather_app/bloc/weather_bloc.dart';
 import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/models/city.dart';
-import 'package:weather_app/services/shared_preferences_service.dart';
 
 class DropdownMenu extends StatelessWidget {
   const DropdownMenu({Key? key}) : super(key: key);
@@ -35,7 +34,6 @@ class DropdownMenu extends StatelessWidget {
               onChanged: (value) async {
                 context.read<SelectedCityCubit>().setCity(value!);
                 BlocProvider.of<WeatherBloc>(context, listen: false).add(WeatherFetchReq(value.id));
-                await SharedPreferencesService.updatePreferredCityId(value.id);
               }),
         ),
       ),

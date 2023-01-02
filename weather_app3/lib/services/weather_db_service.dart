@@ -1,7 +1,7 @@
 import 'package:weather_app/databases/weather_dao.dart';
 import 'package:weather_app/models/weather.dart';
 
-class WeatherDBService{
+class WeatherDBService {
   final WeatherDao _weatherDao;
 
   WeatherDBService({required weatherDao}):

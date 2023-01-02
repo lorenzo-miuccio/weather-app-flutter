@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/databases/weather_database.dart';
+import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/pages/weather_details/weather_details_page.dart';
 import 'package:weather_app/pages/weather_details/weather_details_page_connector.dart';
 import 'package:weather_app/pages/weather_home/weather_home_page_connector.dart';
+import 'package:weather_app/services/shared_preferences_service.dart';
 import 'package:weather_app/services/weather_api_service.dart';
 import 'package:weather_app/services/weather_db_service.dart';
 import 'package:weather_app/theme.dart';
@@ -31,11 +33,20 @@ Future<void> main() async {
 
   final weatherApiService = WeatherApiServiceImpl();
 
-  runApp(RepositoryProvider<WeatherRepository>(
-    create: (_) => WeatherRepository(
-      apiService: weatherApiService,
-      dbService: weatherDBService,
-    ),
+  final keyValueService = CityKeyValueService();
+
+  runApp(MultiRepositoryProvider(
+    providers: [
+      RepositoryProvider<WeatherRepository>(
+        create: (_) => WeatherRepository(
+          apiService: weatherApiService,
+          dbService: weatherDBService,
+        ),
+      ),
+      RepositoryProvider<CitiesRepository>(
+        create: (_) => CitiesRepository(keyValueService: keyValueService),
+      ),
+    ],
     child: const MyApp(),
   ));
 }
@@ -47,7 +58,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: 'Skill Assessment',
       theme: appTheme,

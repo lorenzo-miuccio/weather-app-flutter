@@ -10,23 +10,26 @@ class WeatherRepository {
   final WeatherApiService _apiService;
   final WeatherDBService _dbService;
   Timer? _fetchRemoteTimer;
-  WeatherDetails? weatherDetails;
+  String? previousCityId;
 
   WeatherRepository({apiService, dbService})
       : _apiService = apiService,
         _dbService = dbService;
 
   Future<Weather> getWeatherByCityId(String cityId) =>
-      (_fetchRemoteTimer == null || cityId != weatherDetails?.cityId)
+      (_fetchRemoteTimer == null || cityId != previousCityId)
           ? _getRemoteWeatherByCityId(cityId)
           : _getLocalWeatherByCityId(cityId);
+
+  Future<Weather> getWeatherDetailsByCityId() =>
+      _getRemoteWeatherByCityId(previousCityId!);
 
   Future<Weather> _getRemoteWeatherByCityId(String cityId) =>
       _apiService.getWeatherByCityId(cityId).then((value) {
         _restartTimer(cityId);
+        previousCityId = cityId;
         final currentWeather = value.toEntity();
         _dbService.insertWeather(currentWeather);
-        weatherDetails = currentWeather.toDetails();
         return currentWeather;
       });
 
@@ -62,7 +65,7 @@ extension _WeatherRespToEntityExtension on WeatherResp {
   }
 }
 
-extension _WeatherToDetails on Weather {
+extension WeatherToDetails on Weather {
   WeatherDetails toDetails() => WeatherDetails(
         tempMin: tempMin,
         tempMax: tempMax,

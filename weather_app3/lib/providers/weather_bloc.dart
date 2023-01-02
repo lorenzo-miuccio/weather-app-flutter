@@ -12,7 +12,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherFetchState> {
       : _weatherRepository = weatherRepository,
         super(const WeatherFetchState.loading()) {
 
-    on<WeatherFetchRequested>((event, emit) async {
+    on<WeatherFetchReq>((event, emit) async {
       emit(const WeatherFetchState.loading());
       await _weatherRepository
           .getWeatherByCityId(event.cityId)

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/databases/weather_database.dart';
 import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/pages/weather_details/weather_details_page.dart';
+import 'package:weather_app/pages/weather_details/weather_details_page_connector.dart';
 import 'package:weather_app/pages/weather_home/weather_home_page_connector.dart';
 import 'package:weather_app/services/weather_api_service.dart';
 import 'package:weather_app/services/weather_db_service.dart';
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
       theme: appTheme,
       routes: {
         '/': (context) => const WeatherHomePageConnector(),
-        WeatherDetailsPage.routeName: (context) => const WeatherDetailsPage(),
+        WeatherDetailsPageConnector.routeName: (context) => const WeatherDetailsPageConnector(),
       },
       //initialRoute: '/',
     );

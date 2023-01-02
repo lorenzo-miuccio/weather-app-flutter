@@ -19,7 +19,7 @@ class WeatherHomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: RefreshIndicator(
-          onRefresh: () async => weatherBloc.add(WeatherFetchRequested(selectedCityId)),
+          onRefresh: () async => weatherBloc.add(WeatherFetchReq(selectedCityId)),
           // call API
           child: CustomScrollView(
             physics: const AlwaysScrollableScrollPhysics(),

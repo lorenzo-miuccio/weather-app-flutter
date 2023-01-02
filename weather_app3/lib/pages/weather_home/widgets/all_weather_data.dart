@@ -5,6 +5,7 @@ import 'package:weather_app/models/specific_weather_data.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/models/weather_details.dart';
 import 'package:weather_app/pages/weather_details/weather_details_page.dart';
+import 'package:weather_app/pages/weather_details/weather_details_page_connector.dart';
 import 'package:weather_app/pages/weather_home/widgets/error_widgets/generic_error.dart';
 import 'package:weather_app/pages/weather_home/widgets/specific_weather_data_row.dart';
 import 'package:weather_app/pages/weather_home/widgets/weather_image.dart';
@@ -49,7 +50,7 @@ class AllWeatherData extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-          onTap: () => Navigator.of(context).pushNamed(WeatherDetailsPage.routeName),
+          onTap: () => Navigator.of(context).pushNamed(WeatherDetailsPageConnector.routeName),
           child: Hero(
             tag: 'weather_image',
             child: WeatherImageWidget(

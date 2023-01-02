@@ -22,7 +22,7 @@ class WeatherHomePageConnector extends StatelessWidget {
               BlocProvider<WeatherBloc>(
                 create: (ctx) => WeatherBloc(
                   weatherRepository: context.read<WeatherRepository>(),
-                )..add(WeatherFetchRequested(ctx.read<SelectedCityCubit>().state.id)),
+                )..add(WeatherFetchReq(ctx.read<SelectedCityCubit>().state.id)),
               ),
             ],
             child: const WeatherHomePage(),

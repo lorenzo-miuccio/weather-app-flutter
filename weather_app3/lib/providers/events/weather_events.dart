@@ -4,6 +4,6 @@ part 'weather_events.freezed.dart';
 
 @freezed
 class WeatherEvent with _$WeatherEvent {
-  const factory WeatherEvent.fetchRequested(String cityId) = WeatherFetchRequested;
-  const factory WeatherEvent.newCitySelected(String cityId) = NewCitySelected;
+  const factory WeatherEvent.fetchRequested(String cityId) = WeatherFetchReq;
+  const factory WeatherEvent.detailsRequested(String cityId) = WeatherDetailsReq;
 }

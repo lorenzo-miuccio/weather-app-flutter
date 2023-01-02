@@ -34,7 +34,7 @@ class DropdownMenu extends StatelessWidget {
                   .toList(),
               onChanged: (value) async {
                 context.read<SelectedCityCubit>().setCity(value!);
-                BlocProvider.of<WeatherBloc>(context, listen: false).add(WeatherFetchRequested(value.id));
+                BlocProvider.of<WeatherBloc>(context, listen: false).add(WeatherFetchReq(value.id));
                 await SharedPreferencesService.updatePreferredCityId(value.id);
               }),
         ),

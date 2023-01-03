@@ -9,15 +9,10 @@ class WeatherCubit extends Cubit<WeatherFetchState> {
   final WeatherRepository _weatherRepo;
   final CitiesRepository _citiesRepo;
 
-  // no future getIstance
-  static Future<WeatherCubit> getInstance(
-          {required CitiesRepository citiesRepo, required WeatherRepository weatherRepo}) async =>
-      await citiesRepo
-          .getCityKeyValue()
-          .then((savedCityId) => WeatherCubit._(citiesRepo, weatherRepo, savedCityId));
-
-  WeatherCubit._(this._citiesRepo, this._weatherRepo, String savedCityId)
-      : super(WeatherFetchState.loading(selectedCityId: savedCityId));
+  WeatherCubit({required CitiesRepository citiesRepo, required WeatherRepository weatherRepo})
+      : _weatherRepo = weatherRepo,
+        _citiesRepo = citiesRepo,
+        super(WeatherFetchState.loading(selectedCityId: citiesRepo.getCityKeyValue()));
 
   Future<void> newSelectedCity(String newCityId) async {
     await _citiesRepo

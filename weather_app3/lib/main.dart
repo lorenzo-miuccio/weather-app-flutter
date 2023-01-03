@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/databases/weather_database.dart';
 import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/domain/weather_repository.dart';
-import 'package:weather_app/pages/weather_details/weather_details_page.dart';
 import 'package:weather_app/pages/weather_details/weather_details_page_connector.dart';
 import 'package:weather_app/pages/weather_home/weather_home_page_connector.dart';
 import 'package:weather_app/services/shared_preferences_service.dart';
@@ -30,12 +29,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final weatherDB = await $FloorWeatherDatabase.databaseBuilder('weather_database.db').build();
-  final weatherDBService = WeatherDBService(weatherDao: weatherDB.weatherDao);
+  final weatherDBService = WeatherDBServiceImpl(weatherDao: weatherDB.weatherDao);
 
   final weatherApiService = WeatherApiServiceImpl();
 
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final keyValueService = CityKeyValueService(sharedPreferences: prefs);
+  final keyValueService = CityKeyValueServiceImpl(sharedPreferences: prefs);
 
   runApp(MultiRepositoryProvider(
     providers: [

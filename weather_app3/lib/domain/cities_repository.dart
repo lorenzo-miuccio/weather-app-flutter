@@ -18,5 +18,5 @@ class CitiesRepository {
 
   Future<void> updateCityKeyValue(String cityId) => keyValueService.updateSavedCityId(cityId);
 
-  Future<String> getCityKeyValue() => keyValueService.getSavedCityId();
+  String getCityKeyValue() => keyValueService.getSavedCityId();
 }

@@ -9,6 +9,7 @@ class WeatherCubit extends Cubit<WeatherFetchState> {
   final WeatherRepository _weatherRepo;
   final CitiesRepository _citiesRepo;
 
+  // no future getIstance
   static Future<WeatherCubit> getInstance(
           {required CitiesRepository citiesRepo, required WeatherRepository weatherRepo}) async =>
       await citiesRepo

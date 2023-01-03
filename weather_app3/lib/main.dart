@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/databases/weather_database.dart';
 import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/domain/weather_repository.dart';
@@ -33,7 +34,8 @@ Future<void> main() async {
 
   final weatherApiService = WeatherApiServiceImpl();
 
-  final keyValueService = CityKeyValueService();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final keyValueService = CityKeyValueService(sharedPreferences: prefs);
 
   runApp(MultiRepositoryProvider(
     providers: [

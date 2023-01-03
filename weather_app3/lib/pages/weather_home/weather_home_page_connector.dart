@@ -5,7 +5,6 @@ import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/pages/common_widgets/error_widgets/generic_error.dart';
 import 'package:weather_app/pages/weather_home/weather_home_page.dart';
-import 'package:weather_app/services/shared_preferences_service.dart';
 
 class WeatherHomePageConnector extends StatelessWidget {
   const WeatherHomePageConnector({Key? key}) : super(key: key);
@@ -14,9 +13,7 @@ class WeatherHomePageConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: WeatherCubit.getInstance(
-        citiesRepo: CitiesRepository(
-          keyValueService: CityKeyValueService(),
-        ),
+        citiesRepo: context.read<CitiesRepository>(),
         weatherRepo: context.read<WeatherRepository>(),
       ),
       builder: (context, snapshot) {

@@ -1,14 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CityKeyValueService {
+  final SharedPreferences _prefs;
 
-  Future<void> updateSavedCityId(String cityId) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('city', cityId);
-  }
+  CityKeyValueService({required SharedPreferences sharedPreferences}) : _prefs = sharedPreferences;
 
-  Future<String> getSavedCityId() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('city') ?? 'Rome, IT';
-  }
+  Future<void> updateSavedCityId(String cityId) => _prefs.setString('city', cityId);
+
+  String getSavedCityId() => _prefs.getString('city') ?? 'Rome, IT';
 }

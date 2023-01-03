@@ -3,6 +3,8 @@ import 'package:weather_app/models/api_response_entities/weather_main_resp.dart'
 import 'package:weather_app/models/api_response_entities/weather_sun_times_resp.dart';
 import 'package:weather_app/models/api_response_entities/weather_resp.dart';
 import 'package:weather_app/models/api_response_entities/weather_wind_resp.dart';
+import 'package:weather_app/models/data_errors.dart';
+import 'package:weather_app/models/either.dart';
 import 'package:weather_app/services/api_extensions.dart';
 
 import 'network/weather_api.dart';
@@ -12,18 +14,20 @@ abstract class WeatherApiService {
 }
 
 class WeatherApiServiceImpl implements WeatherApiService {
-  final WeatherApi _api =
-      WeatherApi(Dio()..interceptors.add(_WeatherApiServiceInterceptor()));
+  final WeatherApi _api = WeatherApi(Dio()..interceptors.add(_WeatherApiServiceInterceptor()));
 
   @override
   Future<WeatherResp> getWeatherByCityId(String cityId) =>
       _api.GETWeatherByCityId(cityId: cityId).catchApiRequestErrors();
+  /*@override
+  Future<Either<DataErrors, WeatherResp>> getWeatherByCityId(String cityId) =>
+      _api.GETWeatherByCityId(cityId: cityId).then((value) => Either.right(value)).catchApiRequestDataErrors();*/
 }
 
 class WeatherApiServiceMock implements WeatherApiService {
   @override
-  Future<WeatherResp> getWeatherByCityId(String cityId) => Future.value(
-        WeatherResp(
+  Future<WeatherResp> getWeatherByCityId(String cityId) =>
+      Future.value(WeatherResp(
           weather: [],
           main: WeatherMainResp(temp: 30, humidity: 60, tempMax: 33, tempMin: 25),
           wind: WeatherWindResp(speed: 20),
@@ -32,7 +36,8 @@ class WeatherApiServiceMock implements WeatherApiService {
             sunset: DateTime.now(),
             sunrise: DateTime.now(),
             countryId: '',
-          ), cityName: '',
+          ),
+          cityName: '',
         ),
       );
 }

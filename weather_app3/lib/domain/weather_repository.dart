@@ -37,7 +37,16 @@ class WeatherRepository {
       });
 
   Future<Weather> _getLocalWeatherByCityId(String cityId) =>
-      _dbService.getWeatherByCityId(cityId).catchError((e) => _getRemoteWeatherByCityId(cityId));
+      _dbService.getWeatherByCityId(cityId).then((value) {
+        Weather? weather;
+        value.fold((dataErr) =>
+          weather = null, (data) => weather = data);
+        if(weather != null) {
+          return weather!;
+        } else {
+          return _getRemoteWeatherByCityId(cityId);
+        }
+      });
 
   void _restartTimer(String cityId) {
     _fetchRemoteTimer?.cancel();

@@ -16,13 +16,13 @@ class WeatherFetchState with _$WeatherFetchState {
       );
 
   const factory WeatherFetchState.hasData(
-      {required WeatherInterface currentWeather, required String selectedCityId}) = _WeatherData;
+      {required WeatherInterface currentWeather, required String selectedCityId}) = _WeatherFetchDataState;
 
-  const factory WeatherFetchState.loading({required String selectedCityId}) = _LoadingWeatherData;
+  const factory WeatherFetchState.loading({required String selectedCityId}) = _WeatherFetchLoadingState;
 
   const factory WeatherFetchState.error({required String selectedCityId, String? message}) =
-      _ErrorWeatherFetching;
+      _WeatherFetchError;
 
   const factory WeatherFetchState.noConnectionError({required String selectedCityId, String? message}) =
-      _NoConnectionError;
+      _WeatherFetchNoConnectionError;
 }

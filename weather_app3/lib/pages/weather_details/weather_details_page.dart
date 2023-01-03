@@ -10,9 +10,21 @@ class WeatherDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<WeatherDetailsCubit>().getWeatherDetails();
-    return BlocBuilder<WeatherDetailsCubit, WeatherFetchState>(
-      builder: (_, fetchState) =>
-          DisplayWeatherFetch(fetchState: fetchState, page: PageName.details),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          titleTextStyle: Theme.of(context).textTheme.headline1,
+          title: const Text('Details'),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          toolbarHeight: 150,
+        ),
+        body: BlocBuilder<WeatherDetailsCubit, WeatherFetchState>(
+          builder: (_, fetchState) =>
+              DisplayWeatherFetch(fetchState: fetchState, page: PageName.details),
+        )
+      ),
     );
   }
 }

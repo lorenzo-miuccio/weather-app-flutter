@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:weather_app/models/api_response_entities/weather_resp.dart';
 import 'package:weather_app/models/weather.dart';
-import 'package:weather_app/models/weather_details.dart';
 import 'package:weather_app/services/weather_api_service.dart';
 import 'package:weather_app/services/weather_db_service.dart';
 
@@ -33,6 +32,7 @@ class WeatherRepository {
         return currentWeather;
       }).catchError((e) {
         _fetchRemoteTimer?.cancel();
+        _fetchRemoteTimer = null;
       });
 
   Future<Weather> _getLocalWeatherByCityId(String cityId) =>

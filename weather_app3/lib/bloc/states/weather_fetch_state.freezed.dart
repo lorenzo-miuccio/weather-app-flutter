@@ -19,8 +19,7 @@ mixin _$WeatherFetchState {
   String get selectedCityId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            WeatherInterface currentWeather, String selectedCityId)
+    required TResult Function(Weather currentWeather, String selectedCityId)
         hasData,
     required TResult Function(String selectedCityId) loading,
     required TResult Function(String selectedCityId, String? message) error,
@@ -30,8 +29,7 @@ mixin _$WeatherFetchState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WeatherInterface currentWeather, String selectedCityId)?
-        hasData,
+    TResult? Function(Weather currentWeather, String selectedCityId)? hasData,
     TResult? Function(String selectedCityId)? loading,
     TResult? Function(String selectedCityId, String? message)? error,
     TResult? Function(String selectedCityId, String? message)?
@@ -40,8 +38,7 @@ mixin _$WeatherFetchState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WeatherInterface currentWeather, String selectedCityId)?
-        hasData,
+    TResult Function(Weather currentWeather, String selectedCityId)? hasData,
     TResult Function(String selectedCityId)? loading,
     TResult Function(String selectedCityId, String? message)? error,
     TResult Function(String selectedCityId, String? message)? noConnectionError,
@@ -121,7 +118,7 @@ abstract class _$$_WeatherFetchDataStateCopyWith<$Res>
       __$$_WeatherFetchDataStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({WeatherInterface currentWeather, String selectedCityId});
+  $Res call({Weather currentWeather, String selectedCityId});
 }
 
 /// @nodoc
@@ -142,7 +139,7 @@ class __$$_WeatherFetchDataStateCopyWithImpl<$Res>
       currentWeather: null == currentWeather
           ? _value.currentWeather
           : currentWeather // ignore: cast_nullable_to_non_nullable
-              as WeatherInterface,
+              as Weather,
       selectedCityId: null == selectedCityId
           ? _value.selectedCityId
           : selectedCityId // ignore: cast_nullable_to_non_nullable
@@ -159,7 +156,7 @@ class _$_WeatherFetchDataState extends _WeatherFetchDataState {
       : super._();
 
   @override
-  final WeatherInterface currentWeather;
+  final Weather currentWeather;
   @override
   final String selectedCityId;
 
@@ -192,8 +189,7 @@ class _$_WeatherFetchDataState extends _WeatherFetchDataState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            WeatherInterface currentWeather, String selectedCityId)
+    required TResult Function(Weather currentWeather, String selectedCityId)
         hasData,
     required TResult Function(String selectedCityId) loading,
     required TResult Function(String selectedCityId, String? message) error,
@@ -206,8 +202,7 @@ class _$_WeatherFetchDataState extends _WeatherFetchDataState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WeatherInterface currentWeather, String selectedCityId)?
-        hasData,
+    TResult? Function(Weather currentWeather, String selectedCityId)? hasData,
     TResult? Function(String selectedCityId)? loading,
     TResult? Function(String selectedCityId, String? message)? error,
     TResult? Function(String selectedCityId, String? message)?
@@ -219,8 +214,7 @@ class _$_WeatherFetchDataState extends _WeatherFetchDataState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WeatherInterface currentWeather, String selectedCityId)?
-        hasData,
+    TResult Function(Weather currentWeather, String selectedCityId)? hasData,
     TResult Function(String selectedCityId)? loading,
     TResult Function(String selectedCityId, String? message)? error,
     TResult Function(String selectedCityId, String? message)? noConnectionError,
@@ -273,11 +267,11 @@ class _$_WeatherFetchDataState extends _WeatherFetchDataState {
 
 abstract class _WeatherFetchDataState extends WeatherFetchState {
   const factory _WeatherFetchDataState(
-      {required final WeatherInterface currentWeather,
+      {required final Weather currentWeather,
       required final String selectedCityId}) = _$_WeatherFetchDataState;
   const _WeatherFetchDataState._() : super._();
 
-  WeatherInterface get currentWeather;
+  Weather get currentWeather;
   @override
   String get selectedCityId;
   @override
@@ -355,8 +349,7 @@ class _$_WeatherFetchLoadingState extends _WeatherFetchLoadingState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            WeatherInterface currentWeather, String selectedCityId)
+    required TResult Function(Weather currentWeather, String selectedCityId)
         hasData,
     required TResult Function(String selectedCityId) loading,
     required TResult Function(String selectedCityId, String? message) error,
@@ -369,8 +362,7 @@ class _$_WeatherFetchLoadingState extends _WeatherFetchLoadingState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WeatherInterface currentWeather, String selectedCityId)?
-        hasData,
+    TResult? Function(Weather currentWeather, String selectedCityId)? hasData,
     TResult? Function(String selectedCityId)? loading,
     TResult? Function(String selectedCityId, String? message)? error,
     TResult? Function(String selectedCityId, String? message)?
@@ -382,8 +374,7 @@ class _$_WeatherFetchLoadingState extends _WeatherFetchLoadingState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WeatherInterface currentWeather, String selectedCityId)?
-        hasData,
+    TResult Function(Weather currentWeather, String selectedCityId)? hasData,
     TResult Function(String selectedCityId)? loading,
     TResult Function(String selectedCityId, String? message)? error,
     TResult Function(String selectedCityId, String? message)? noConnectionError,
@@ -524,8 +515,7 @@ class _$_WeatherFetchError extends _WeatherFetchError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            WeatherInterface currentWeather, String selectedCityId)
+    required TResult Function(Weather currentWeather, String selectedCityId)
         hasData,
     required TResult Function(String selectedCityId) loading,
     required TResult Function(String selectedCityId, String? message) error,
@@ -538,8 +528,7 @@ class _$_WeatherFetchError extends _WeatherFetchError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WeatherInterface currentWeather, String selectedCityId)?
-        hasData,
+    TResult? Function(Weather currentWeather, String selectedCityId)? hasData,
     TResult? Function(String selectedCityId)? loading,
     TResult? Function(String selectedCityId, String? message)? error,
     TResult? Function(String selectedCityId, String? message)?
@@ -551,8 +540,7 @@ class _$_WeatherFetchError extends _WeatherFetchError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WeatherInterface currentWeather, String selectedCityId)?
-        hasData,
+    TResult Function(Weather currentWeather, String selectedCityId)? hasData,
     TResult Function(String selectedCityId)? loading,
     TResult Function(String selectedCityId, String? message)? error,
     TResult Function(String selectedCityId, String? message)? noConnectionError,
@@ -699,8 +687,7 @@ class _$_WeatherFetchNoConnectionError extends _WeatherFetchNoConnectionError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            WeatherInterface currentWeather, String selectedCityId)
+    required TResult Function(Weather currentWeather, String selectedCityId)
         hasData,
     required TResult Function(String selectedCityId) loading,
     required TResult Function(String selectedCityId, String? message) error,
@@ -713,8 +700,7 @@ class _$_WeatherFetchNoConnectionError extends _WeatherFetchNoConnectionError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WeatherInterface currentWeather, String selectedCityId)?
-        hasData,
+    TResult? Function(Weather currentWeather, String selectedCityId)? hasData,
     TResult? Function(String selectedCityId)? loading,
     TResult? Function(String selectedCityId, String? message)? error,
     TResult? Function(String selectedCityId, String? message)?
@@ -726,8 +712,7 @@ class _$_WeatherFetchNoConnectionError extends _WeatherFetchNoConnectionError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WeatherInterface currentWeather, String selectedCityId)?
-        hasData,
+    TResult Function(Weather currentWeather, String selectedCityId)? hasData,
     TResult Function(String selectedCityId)? loading,
     TResult Function(String selectedCityId, String? message)? error,
     TResult Function(String selectedCityId, String? message)? noConnectionError,

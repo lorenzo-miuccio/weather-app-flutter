@@ -4,12 +4,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/databases/weather_database.dart';
 import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/domain/weather_repository.dart';
-import 'package:weather_app/pages/weather_details/weather_details_page_connector.dart';
-import 'package:weather_app/pages/weather_home/weather_home_page_connector.dart';
+import 'package:weather_app/pages/weather_details/weather_details_page.dart';
+import 'package:weather_app/pages/weather_home/weather_home_page.dart';
 import 'package:weather_app/services/shared_preferences_service.dart';
 import 'package:weather_app/services/weather_api_service.dart';
 import 'package:weather_app/services/weather_db_service.dart';
 import 'package:weather_app/theme.dart';
+
+import 'bloc/weather_cubit.dart';
 
 enum Env {
   dev,
@@ -59,14 +61,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Skill Assessment',
-      theme: appTheme,
-      routes: {
-        '/': (context) => const WeatherHomePageConnector(),
-        WeatherDetailsPageConnector.routeName: (context) => const WeatherDetailsPageConnector(),
-      },
-      //initialRoute: '/',
+    return BlocProvider<WeatherCubit>(
+      create: (_) => WeatherCubit(
+        citiesRepo: context.read<CitiesRepository>(),
+        weatherRepo: context.read<WeatherRepository>(),
+      )..refreshWeatherData(),child: MaterialApp(
+        title: 'Skill Assessment',
+        theme: appTheme,
+        routes: {
+          '/': (context) => const WeatherHomePage(),
+          WeatherDetailsPage.routeName: (context) => const WeatherDetailsPage(),
+        },
+        //initialRoute: '/',
+      ),
     );
   }
 }

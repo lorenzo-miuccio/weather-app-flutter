@@ -16,7 +16,7 @@ class WeatherFetchState with _$WeatherFetchState {
       );
 
   const factory WeatherFetchState.hasData(
-      {required WeatherInterface currentWeather, required String selectedCityId}) = _WeatherFetchDataState;
+      {required Weather currentWeather, required String selectedCityId}) = _WeatherFetchDataState;
 
   const factory WeatherFetchState.loading({required String selectedCityId}) = _WeatherFetchLoadingState;
 

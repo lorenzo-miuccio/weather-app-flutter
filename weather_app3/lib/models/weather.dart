@@ -1,10 +1,9 @@
 // class containing all weather information used by the app to display the current weather
 import 'package:floor/floor.dart';
 
-abstract class WeatherInterface {}
 
 @entity
-class Weather implements WeatherInterface {
+class Weather {
   @primaryKey
   final String cityId;
 
@@ -36,7 +35,7 @@ class Weather implements WeatherInterface {
   String toString() => '$cityId: $temperature';
 }
 
-class WeatherDetails implements WeatherInterface{
+class WeatherDetails {
   final double tempMin, tempMax;
   final String description;
   final String iconPath;
@@ -44,4 +43,14 @@ class WeatherDetails implements WeatherInterface{
 
   WeatherDetails({required this.tempMin, required this.tempMax, required this.description, required this.iconPath, required this.cityId});
 
+}
+
+extension WeatherToDetailsExtension on Weather {
+  WeatherDetails toDetails() => WeatherDetails(
+    tempMin: tempMin,
+    tempMax: tempMax,
+    iconPath: iconPath,
+    cityId: cityId,
+    description: description,
+  );
 }

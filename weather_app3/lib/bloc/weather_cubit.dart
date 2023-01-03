@@ -15,13 +15,13 @@ class WeatherCubit extends Cubit<WeatherFetchState> {
         super(WeatherFetchState.loading(selectedCityId: citiesRepo.getCityKeyValue()));
 
   void newSelectedCity(String newCityId) =>
-      _citiesRepo.updateCityKeyValue(newCityId).then((_) => refreshWeatherData(cityId: newCityId));
+      _citiesRepo.updateCityKeyValue(newCityId).then((_) => refreshWeatherData(cityId: newCityId, remote: true));
 
-  void refreshWeatherData({String? cityId}) {
+  void refreshWeatherData({String? cityId, bool remote = false}) {
     cityId ??= state.selectedCityId;
     emit(WeatherFetchState.loading(selectedCityId: state.selectedCityId));
     _weatherRepo
-        .getWeatherByCityId(cityId)
+        .getWeatherByCityId(cityId, remote: remote)
         .then((value) => emit(WeatherFetchState.hasData(currentWeather: value, selectedCityId: cityId!)))
         .catchError((e) {
       if (e is ConnectionException) {
@@ -31,4 +31,5 @@ class WeatherCubit extends Cubit<WeatherFetchState> {
       }
     });
   }
+
 }

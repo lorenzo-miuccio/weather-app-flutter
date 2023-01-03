@@ -15,8 +15,8 @@ class WeatherRepository {
       : _apiService = apiService,
         _dbService = dbService;
 
-  Future<Weather> getWeatherByCityId(String cityId) =>
-      (_fetchRemoteTimer == null || cityId != previousCityId)
+  Future<Weather> getWeatherByCityId(String cityId, {remote = false}) =>
+      (_fetchRemoteTimer == null || cityId != previousCityId || remote)
           ? _getRemoteWeatherByCityId(cityId)
           : _getLocalWeatherByCityId(cityId);
 
@@ -79,12 +79,3 @@ extension _WeatherRespToEntityExtension on WeatherResp {
   }
 }
 
-extension _WeatherToDetailsExtension on Weather {
-  WeatherDetails toDetails() => WeatherDetails(
-        tempMin: tempMin,
-        tempMax: tempMax,
-        iconPath: iconPath,
-        cityId: cityId,
-        description: description,
-      );
-}

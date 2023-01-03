@@ -14,29 +14,20 @@ class WeatherCubit extends Cubit<WeatherFetchState> {
         _citiesRepo = citiesRepo,
         super(WeatherFetchState.loading(selectedCityId: citiesRepo.getCityKeyValue()));
 
-  Future<void> newSelectedCity(String newCityId) async {
-    await _citiesRepo
-        .updateCityKeyValue(newCityId)
-        .then((_) => emit(WeatherFetchState.loading(selectedCityId: newCityId)));
+  void newSelectedCity(String newCityId) =>
+      _citiesRepo.updateCityKeyValue(newCityId).then((_) => refreshWeatherData(cityId: newCityId));
 
-    await _fetchWeather();
-  }
-
-  Future<void> refreshWeatherData() async {
+  void refreshWeatherData({String? cityId}) {
+    cityId ??= state.selectedCityId;
     emit(WeatherFetchState.loading(selectedCityId: state.selectedCityId));
-    await _fetchWeather();
-  }
-
-  Future<void> _fetchWeather() async {
-    final String id = state.selectedCityId;
-    await _weatherRepo
-        .getWeatherByCityId(id)
-        .then((value) => emit(WeatherFetchState.hasData(currentWeather: value, selectedCityId: id)))
+    _weatherRepo
+        .getWeatherByCityId(cityId)
+        .then((value) => emit(WeatherFetchState.hasData(currentWeather: value, selectedCityId: cityId!)))
         .catchError((e) {
       if (e is ConnectionException) {
-        emit(WeatherFetchState.noConnectionError(selectedCityId: id));
+        emit(WeatherFetchState.noConnectionError(selectedCityId: cityId!));
       } else {
-        emit(WeatherFetchState.error(selectedCityId: id));
+        emit(WeatherFetchState.error(selectedCityId: cityId!));
       }
     });
   }

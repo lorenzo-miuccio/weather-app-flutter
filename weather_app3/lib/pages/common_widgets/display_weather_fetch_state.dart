@@ -29,6 +29,5 @@ class DisplayWeatherFetch extends StatelessWidget {
         noConnectionError: (value) => const NoConnectionWidget(),
       ),
     );
-    ;
   }
 }

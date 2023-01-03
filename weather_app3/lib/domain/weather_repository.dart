@@ -33,6 +33,7 @@ class WeatherRepository {
       }).catchError((e) {
         _fetchRemoteTimer?.cancel();
         _fetchRemoteTimer = null;
+        throw e;
       });
 
   Future<Weather> _getLocalWeatherByCityId(String cityId) =>

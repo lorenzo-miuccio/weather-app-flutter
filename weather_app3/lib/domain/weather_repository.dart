@@ -15,13 +15,13 @@ class WeatherRepository {
       : _apiService = apiService,
         _dbService = dbService;
 
-  Future<Weather> getWeatherByCityId(String cityId, {remote = false}) =>
+  Future<Weather> getWeatherByCityId(String cityId, {bool remote = false}) =>
       (_fetchRemoteTimer == null || cityId != previousCityId || remote)
           ? _getRemoteWeatherByCityId(cityId)
           : _getLocalWeatherByCityId(cityId);
 
-  Future<WeatherDetails> getWeatherDetails() =>
-      _getRemoteWeatherByCityId(previousCityId!).then((value) => value.toDetails());
+  /*Future<WeatherDetails> getWeatherDetails() =>
+      _getRemoteWeatherByCityId(previousCityId!).then((value) => value.toDetails());*/
 
   Future<Weather> _getRemoteWeatherByCityId(String cityId) =>
       _apiService.getWeatherByCityId(cityId).then((value) {

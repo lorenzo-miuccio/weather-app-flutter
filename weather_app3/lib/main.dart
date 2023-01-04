@@ -6,7 +6,7 @@ import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/domain/weather_repository.dart';
 import 'package:weather_app/pages/weather_details/weather_details_page.dart';
 import 'package:weather_app/pages/weather_home/weather_home_page.dart';
-import 'package:weather_app/services/shared_preferences_service.dart';
+import 'package:weather_app/services/city_key_value_service.dart';
 import 'package:weather_app/services/weather_api_service.dart';
 import 'package:weather_app/services/weather_db_service.dart';
 import 'package:weather_app/theme.dart';
@@ -35,7 +35,7 @@ Future<void> main() async {
 
   final weatherApiService = WeatherApiServiceImpl();
 
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final prefs = await SharedPreferences.getInstance();
   final keyValueService = CityKeyValueServiceImpl(sharedPreferences: prefs);
 
   runApp(MultiRepositoryProvider(
@@ -56,8 +56,6 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  //Future<WeatherDatabase> _getDatabase() => $FloorWeatherDatabase.databaseBuilder('weather_database.db').build();
 
   @override
   Widget build(BuildContext context) {

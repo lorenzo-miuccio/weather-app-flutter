@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/domain/weather_repository.dart';
-import 'package:weather_app/models/data_errors.dart';
+import 'package:weather_app/models/data_error.dart';
 
 import 'states/weather_fetch_state.dart';
 

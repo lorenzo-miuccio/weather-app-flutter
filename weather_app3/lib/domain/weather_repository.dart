@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:weather_app/exceptions/api_exceptions.dart';
+import 'package:weather_app/models/exceptions.dart';
 import 'package:weather_app/models/api_response_entities/weather_resp.dart';
-import 'package:weather_app/models/data_errors.dart';
+import 'package:weather_app/models/data_error.dart';
 import 'package:weather_app/models/either.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/services/weather_api_service.dart';
@@ -11,37 +11,35 @@ import 'package:weather_app/services/weather_db_service.dart';
 class WeatherRepository {
   final WeatherApiService _apiService;
   final WeatherDBService _dbService;
-  Timer? _fetchRemoteTimer;
-  String? previousCityId;
+  DateTime _lastRemoteFetch = DateTime.fromMillisecondsSinceEpoch(0);
+  String? _previousCityId;
 
   WeatherRepository({apiService, dbService})
       : _apiService = apiService,
         _dbService = dbService;
 
   Future<Either<DataError, Weather>> getWeatherByCityId(String cityId, {bool remote = false}) =>
-      (_fetchRemoteTimer == null || cityId != previousCityId || remote) ? _getRemoteWeatherByCityId(cityId) : _getLocalWeatherByCityId(cityId);
+      (!_checkDataValidity() || cityId != _previousCityId || remote)
+          ? _getRemoteWeatherByCityId(cityId)
+          : _getLocalWeatherByCityId(cityId);
 
   Future<Either<DataError, Weather>> _getRemoteWeatherByCityId(String cityId) =>
       _apiService.getWeatherByCityId(cityId).then<Either<DataError, Weather>>((value) {
-        previousCityId = cityId;
+        _previousCityId = cityId;
         final currentWeather = value.toEntity();
         _dbService.insertWeather(currentWeather);
-        _restartTimer(cityId);
+        _lastRemoteFetch = DateTime.now();
         return Right(currentWeather);
       }).catchError((e) {
-        _fetchRemoteTimer?.cancel();
-        _fetchRemoteTimer = null;
+        _lastRemoteFetch = DateTime.fromMillisecondsSinceEpoch(0);
         return Left<DataError, Weather>(e.toDataError());
       });
 
-  Future<Either<DataError, Weather>> _getLocalWeatherByCityId(String cityId) => _dbService.getWeatherByCityId(cityId).then<Either<DataError, Weather>>(
-        (value) => value == null ? Left(const DataError.db()) : Right(value),
-      );
+  Future<Either<DataError, Weather>> _getLocalWeatherByCityId(String cityId) =>
+      _dbService.getWeatherByCityId(cityId).then(
+          (value) => value == null ? (_getRemoteWeatherByCityId(cityId) as Either<DataError, Weather>) : Right(value));
 
-  void _restartTimer(String cityId) {
-    _fetchRemoteTimer?.cancel();
-    _fetchRemoteTimer = Timer.periodic(const Duration(seconds: 30), (timer) => _getRemoteWeatherByCityId(cityId));
-  }
+  bool _checkDataValidity() => DateTime.now().difference(_lastRemoteFetch) < const Duration(seconds: 15) ? true : false;
 }
 
 extension _WeatherRespToEntityExtension on WeatherResp {
@@ -74,11 +72,11 @@ extension _DynamicDataErrorExtension on dynamic {
       case NoConnectionException:
         return const DataError.noConnection();
       case HttpStatusException:
-        return const DataError.httpStatus();
-      case Exception:
-        return DataError.generic(message: (this as Exception).toString());
+        return DataError.httpStatus(message: toString());
+      case DatabaseException:
+        return DataError.db(message: toString());
       default:
-        return const DataError.generic();
+        return DataError.generic(message: toString());
     }
   }
 }

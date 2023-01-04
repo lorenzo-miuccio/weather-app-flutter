@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:weather_app/exceptions/api_exceptions.dart';
+import 'package:weather_app/models/exceptions.dart';
 
 // extension CatchApiRequestDataErrorsExtension<R> on Future<R> {
 //   Future<Either<DataError, R>> catchApiRequestErrors() => then<Either<DataError, R>>((value) => Right(value)).catchError((e, s) {
@@ -35,6 +35,6 @@ extension CatchApiRequestErrorsExtension<T> on Future<T> {
       });
 
   Future<T> catchDbOperationsErrors() => catchError((e, s) {
-        throw Exception('Db error.');
+        throw DatabaseException(e.toString());
       });
 }

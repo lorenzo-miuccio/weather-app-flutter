@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'data_errors.freezed.dart';
+part 'data_error.freezed.dart';
 
 @freezed
 class DataError with _$DataError {

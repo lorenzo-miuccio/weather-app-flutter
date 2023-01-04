@@ -1,6 +1,4 @@
 import 'package:weather_app/databases/weather_dao.dart';
-import 'package:weather_app/models/data_errors.dart';
-import 'package:weather_app/models/either.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/services/api_extensions.dart';
 

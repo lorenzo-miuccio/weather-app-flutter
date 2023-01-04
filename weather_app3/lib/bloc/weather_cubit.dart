@@ -12,25 +12,26 @@ class WeatherCubit extends Cubit<WeatherFetchState> {
   WeatherCubit({required CitiesRepository citiesRepo, required WeatherRepository weatherRepo})
       : _weatherRepo = weatherRepo,
         _citiesRepo = citiesRepo,
-        super(WeatherFetchState.loading(selectedCityId: citiesRepo.getCityKeyValue()));
+        super(const WeatherFetchState.loading());
 
-  void newSelectedCity(String newCityId) => _citiesRepo.updateCityKeyValue(newCityId).then((_) => refreshWeatherData(cityId: newCityId, remote: true));
+  void newSelectedCity(String newCityId) => _citiesRepo.updateCityKeyValue(newCityId).then((_) => refreshWeatherData(remote: true));
 
-  void refreshWeatherData({String? cityId, bool remote = false}) {
-    cityId ??= state.selectedCityId;
-    emit(WeatherFetchState.loading(selectedCityId: state.selectedCityId));
-    _weatherRepo.getWeatherByCityId(cityId, remote: remote).then(
+  void refreshWeatherData({bool remote = false}) {
+    emit(const WeatherFetchState.loading());
+    _weatherRepo.getWeatherByCityId(getSelectedCityId(), remote: remote).then(
           (value) => value.fold(
-            (e) => emit(e.toWeatherFetchState(cityId!)),
-            (value) => emit(WeatherFetchState.hasData(currentWeather: value, selectedCityId: cityId!)),
+            (e) => emit(e.toWeatherFetchState()),
+            (value) => emit(WeatherFetchState.hasData(currentWeather: value,)),
           ),
         );
   }
+
+  String getSelectedCityId() => _citiesRepo.keyValueService.getSavedCityId();
 }
 
 extension _DataErrorToWeatherFetchStateExtension on DataError {
-  WeatherFetchState toWeatherFetchState(String cityId) => maybeMap(
-        noConnection: (nc) => WeatherFetchState.noConnectionError(selectedCityId: cityId),
-        orElse: () => WeatherFetchState.error(selectedCityId: cityId),
+  WeatherFetchState toWeatherFetchState() => maybeMap(
+        noConnection: (nc) => const WeatherFetchState.noConnectionError(),
+        orElse: () => const WeatherFetchState.error(),
       );
 }

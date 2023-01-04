@@ -13,8 +13,6 @@ enum PageName {
   details,
 }
 
-// BlocBuilder<WeatherCubit, WeatherFetchState>(
-// builder: (_, fetchState) => DisplayWeatherFetch(fetchState: fetchState, page: PageName.home)
 
 class DisplayWeatherFetch extends StatelessWidget {
   //final WeatherFetchState fetchState;

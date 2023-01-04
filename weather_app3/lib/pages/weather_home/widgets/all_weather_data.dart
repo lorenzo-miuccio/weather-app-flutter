@@ -44,9 +44,12 @@ class AllWeatherData extends StatelessWidget {
           return Column(
             children: [
               InkWell(
-                onTap: () => Navigator.of(context)
-                    .pushNamed(WeatherDetailsPage.routeName)
-                    .then((_) => context.read<WeatherCubit>().refreshWeatherData()),
+                onTap: () async {
+                  final cubit = context.read<WeatherCubit>();
+                  cubit.refreshWeatherData(remote: true);
+                  await Navigator.of(context).pushNamed(WeatherDetailsPage.routeName);
+                  cubit.refreshWeatherData();
+                },
                 // closed cubit?
                 child: WeatherImageWidget(
                   iconPath: currentWeather.iconPath,

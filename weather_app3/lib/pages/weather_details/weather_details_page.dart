@@ -11,7 +11,6 @@ class WeatherDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<WeatherCubit>().refreshWeatherData(remote: true);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(

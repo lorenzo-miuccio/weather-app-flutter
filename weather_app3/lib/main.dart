@@ -38,18 +38,14 @@ Future<void> main() async {
   final prefs = await SharedPreferences.getInstance();
   final keyValueService = CityKeyValueServiceImpl(sharedPreferences: prefs);
 
-  runApp(MultiRepositoryProvider(
-    providers: [
-      RepositoryProvider<WeatherRepository>(
-        create: (_) => WeatherRepository(
-          apiService: weatherApiService,
-          dbService: weatherDBService,
-        ),
+  runApp(BlocProvider<WeatherCubit>(
+    create: (_) => WeatherCubit(
+      citiesRepo: CitiesRepository(keyValueService: keyValueService),
+      weatherRepo: WeatherRepository(
+        apiService: weatherApiService,
+        dbService: weatherDBService,
       ),
-      RepositoryProvider<CitiesRepository>(
-        create: (_) => CitiesRepository(keyValueService: keyValueService),
-      ),
-    ],
+    )..refreshWeatherData(),
     child: const MyApp(),
   ));
 }
@@ -59,19 +55,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<WeatherCubit>(
-      create: (_) => WeatherCubit(
-        citiesRepo: context.read<CitiesRepository>(),
-        weatherRepo: context.read<WeatherRepository>(),
-      )..refreshWeatherData(),child: MaterialApp(
-        title: 'Skill Assessment',
-        theme: appTheme,
-        routes: {
-          '/': (context) => const WeatherHomePage(),
-          WeatherDetailsPage.routeName: (context) => const WeatherDetailsPage(),
-        },
-        //initialRoute: '/',
-      ),
+    return MaterialApp(
+      title: 'Skill Assessment',
+      theme: appTheme,
+      routes: {
+        '/': (context) => const WeatherHomePage(),
+        WeatherDetailsPage.routeName: (context) => const WeatherDetailsPage(),
+      },
+      //initialRoute: '/',
     );
   }
 }

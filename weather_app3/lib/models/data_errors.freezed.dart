@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DataErrors {
+mixin _$DataError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) httpStatus,
@@ -69,16 +69,15 @@ mixin _$DataErrors {
 }
 
 /// @nodoc
-abstract class $DataErrorsCopyWith<$Res> {
-  factory $DataErrorsCopyWith(
-          DataErrors value, $Res Function(DataErrors) then) =
-      _$DataErrorsCopyWithImpl<$Res, DataErrors>;
+abstract class $DataErrorCopyWith<$Res> {
+  factory $DataErrorCopyWith(DataError value, $Res Function(DataError) then) =
+      _$DataErrorCopyWithImpl<$Res, DataError>;
 }
 
 /// @nodoc
-class _$DataErrorsCopyWithImpl<$Res, $Val extends DataErrors>
-    implements $DataErrorsCopyWith<$Res> {
-  _$DataErrorsCopyWithImpl(this._value, this._then);
+class _$DataErrorCopyWithImpl<$Res, $Val extends DataError>
+    implements $DataErrorCopyWith<$Res> {
+  _$DataErrorCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -97,7 +96,7 @@ abstract class _$$_HttpStatusDataErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_HttpStatusDataErrorCopyWithImpl<$Res>
-    extends _$DataErrorsCopyWithImpl<$Res, _$_HttpStatusDataError>
+    extends _$DataErrorCopyWithImpl<$Res, _$_HttpStatusDataError>
     implements _$$_HttpStatusDataErrorCopyWith<$Res> {
   __$$_HttpStatusDataErrorCopyWithImpl(_$_HttpStatusDataError _value,
       $Res Function(_$_HttpStatusDataError) _then)
@@ -127,7 +126,7 @@ class _$_HttpStatusDataError extends _HttpStatusDataError {
 
   @override
   String toString() {
-    return 'DataErrors.httpStatus(message: $message)';
+    return 'DataError.httpStatus(message: $message)';
   }
 
   @override
@@ -223,7 +222,7 @@ class _$_HttpStatusDataError extends _HttpStatusDataError {
   }
 }
 
-abstract class _HttpStatusDataError extends DataErrors {
+abstract class _HttpStatusDataError extends DataError {
   const factory _HttpStatusDataError({final String? message}) =
       _$_HttpStatusDataError;
   const _HttpStatusDataError._() : super._();
@@ -243,7 +242,7 @@ abstract class _$$_NoConnectionDataErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_NoConnectionDataErrorCopyWithImpl<$Res>
-    extends _$DataErrorsCopyWithImpl<$Res, _$_NoConnectionDataError>
+    extends _$DataErrorCopyWithImpl<$Res, _$_NoConnectionDataError>
     implements _$$_NoConnectionDataErrorCopyWith<$Res> {
   __$$_NoConnectionDataErrorCopyWithImpl(_$_NoConnectionDataError _value,
       $Res Function(_$_NoConnectionDataError) _then)
@@ -257,7 +256,7 @@ class _$_NoConnectionDataError extends _NoConnectionDataError {
 
   @override
   String toString() {
-    return 'DataErrors.noConnection()';
+    return 'DataError.noConnection()';
   }
 
   @override
@@ -344,7 +343,7 @@ class _$_NoConnectionDataError extends _NoConnectionDataError {
   }
 }
 
-abstract class _NoConnectionDataError extends DataErrors {
+abstract class _NoConnectionDataError extends DataError {
   const factory _NoConnectionDataError() = _$_NoConnectionDataError;
   const _NoConnectionDataError._() : super._();
 }
@@ -360,7 +359,7 @@ abstract class _$$_GenericDataErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_GenericDataErrorCopyWithImpl<$Res>
-    extends _$DataErrorsCopyWithImpl<$Res, _$_GenericDataError>
+    extends _$DataErrorCopyWithImpl<$Res, _$_GenericDataError>
     implements _$$_GenericDataErrorCopyWith<$Res> {
   __$$_GenericDataErrorCopyWithImpl(
       _$_GenericDataError _value, $Res Function(_$_GenericDataError) _then)
@@ -390,7 +389,7 @@ class _$_GenericDataError extends _GenericDataError {
 
   @override
   String toString() {
-    return 'DataErrors.generic(message: $message)';
+    return 'DataError.generic(message: $message)';
   }
 
   @override
@@ -485,7 +484,7 @@ class _$_GenericDataError extends _GenericDataError {
   }
 }
 
-abstract class _GenericDataError extends DataErrors {
+abstract class _GenericDataError extends DataError {
   const factory _GenericDataError({final String? message}) =
       _$_GenericDataError;
   const _GenericDataError._() : super._();
@@ -507,7 +506,7 @@ abstract class _$$_DatabaseErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_DatabaseErrorCopyWithImpl<$Res>
-    extends _$DataErrorsCopyWithImpl<$Res, _$_DatabaseError>
+    extends _$DataErrorCopyWithImpl<$Res, _$_DatabaseError>
     implements _$$_DatabaseErrorCopyWith<$Res> {
   __$$_DatabaseErrorCopyWithImpl(
       _$_DatabaseError _value, $Res Function(_$_DatabaseError) _then)
@@ -537,7 +536,7 @@ class _$_DatabaseError extends _DatabaseError {
 
   @override
   String toString() {
-    return 'DataErrors.db(message: $message)';
+    return 'DataError.db(message: $message)';
   }
 
   @override
@@ -632,7 +631,7 @@ class _$_DatabaseError extends _DatabaseError {
   }
 }
 
-abstract class _DatabaseError extends DataErrors {
+abstract class _DatabaseError extends DataError {
   const factory _DatabaseError({final String? message}) = _$_DatabaseError;
   const _DatabaseError._() : super._();
 

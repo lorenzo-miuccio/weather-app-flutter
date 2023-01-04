@@ -1,7 +1,7 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/domain/weather_repository.dart';
-import 'package:weather_app/exceptions/api_exceptions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/models/data_errors.dart';
 
 import 'states/weather_fetch_state.dart';
 
@@ -14,22 +14,23 @@ class WeatherCubit extends Cubit<WeatherFetchState> {
         _citiesRepo = citiesRepo,
         super(WeatherFetchState.loading(selectedCityId: citiesRepo.getCityKeyValue()));
 
-  void newSelectedCity(String newCityId) =>
-      _citiesRepo.updateCityKeyValue(newCityId).then((_) => refreshWeatherData(cityId: newCityId, remote: true));
+  void newSelectedCity(String newCityId) => _citiesRepo.updateCityKeyValue(newCityId).then((_) => refreshWeatherData(cityId: newCityId, remote: true));
 
   void refreshWeatherData({String? cityId, bool remote = false}) {
     cityId ??= state.selectedCityId;
     emit(WeatherFetchState.loading(selectedCityId: state.selectedCityId));
-    _weatherRepo
-        .getWeatherByCityId(cityId, remote: remote)
-        .then((value) => emit(WeatherFetchState.hasData(currentWeather: value, selectedCityId: cityId!)))
-        .catchError((e) {
-      if (e is ConnectionException) {
-        emit(WeatherFetchState.noConnectionError(selectedCityId: cityId!));
-      } else {
-        emit(WeatherFetchState.error(selectedCityId: cityId!));
-      }
-    });
+    _weatherRepo.getWeatherByCityId(cityId, remote: remote).then(
+          (value) => value.fold(
+            (e) => emit(e.toWeatherFetchState(cityId!)),
+            (value) => emit(WeatherFetchState.hasData(currentWeather: value, selectedCityId: cityId!)),
+          ),
+        );
   }
+}
 
+extension _DataErrorToWeatherFetchStateExtension on DataError {
+  WeatherFetchState toWeatherFetchState(String cityId) => maybeMap(
+        noConnection: (nc) => WeatherFetchState.noConnectionError(selectedCityId: cityId),
+        orElse: () => WeatherFetchState.error(selectedCityId: cityId),
+      );
 }

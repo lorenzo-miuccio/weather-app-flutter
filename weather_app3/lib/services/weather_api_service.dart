@@ -19,9 +19,6 @@ class WeatherApiServiceImpl implements WeatherApiService {
   @override
   Future<WeatherResp> getWeatherByCityId(String cityId) =>
       _api.GETWeatherByCityId(cityId: cityId).catchApiRequestErrors();
-  /*@override
-  Future<Either<DataErrors, WeatherResp>> getWeatherByCityId(String cityId) =>
-      _api.GETWeatherByCityId(cityId: cityId).then((value) => Either.right(value)).catchApiRequestDataErrors();*/
 }
 
 class WeatherApiServiceMock implements WeatherApiService {

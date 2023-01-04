@@ -2,9 +2,10 @@ import 'package:weather_app/databases/weather_dao.dart';
 import 'package:weather_app/models/data_errors.dart';
 import 'package:weather_app/models/either.dart';
 import 'package:weather_app/models/weather.dart';
+import 'package:weather_app/services/api_extensions.dart';
 
 abstract class WeatherDBService {
-  Future<Either<DataErrors, Weather>> getWeatherByCityId(String cityId);
+  Future<Weather?> getWeatherByCityId(String cityId);
 
   Future<void> insertWeather(Weather weather);
 }
@@ -15,10 +16,7 @@ class WeatherDBServiceImpl implements WeatherDBService {
   WeatherDBServiceImpl({required weatherDao}) : _weatherDao = weatherDao;
 
   @override
-  Future<Either<DataErrors, Weather>> getWeatherByCityId(String cityId) =>
-      _weatherDao.findWeatherByCityId(cityId).then((value) => value != null
-          ? Either.right(value)
-          : Either.left(const DataErrors.db(message: 'Weather not found')));
+  Future<Weather?> getWeatherByCityId(String cityId) => _weatherDao.findWeatherByCityId(cityId).catchDbOperationsErrors();
 
   @override
   Future<void> insertWeather(Weather weather) => _weatherDao.insertWeather(weather);

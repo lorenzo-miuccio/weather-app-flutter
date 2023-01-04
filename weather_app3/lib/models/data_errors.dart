@@ -3,15 +3,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'data_errors.freezed.dart';
 
 @freezed
-class DataErrors with _$DataErrors {
-  const DataErrors._();
+class DataError with _$DataError {
+  const DataError._();
 
-  const factory DataErrors.httpStatus({String? message}) = _HttpStatusDataError;
+  const factory DataError.httpStatus({String? message}) = _HttpStatusDataError;
 
-  const factory DataErrors.noConnection() = _NoConnectionDataError;
+  const factory DataError.noConnection() = _NoConnectionDataError;
 
-  const factory DataErrors.generic({String? message}) = _GenericDataError;
+  const factory DataError.generic({String? message}) = _GenericDataError;
 
-  const factory DataErrors.db({String? message}) = _DatabaseError;
-
+  const factory DataError.db({String? message}) = _DatabaseError;
 }

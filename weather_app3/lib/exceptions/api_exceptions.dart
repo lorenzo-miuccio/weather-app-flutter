@@ -1,10 +1,10 @@
 
 // Exception thrown for a connection issue, for example no wifi
-class ConnectionException implements Exception {
+class NoConnectionException implements Exception {
 
   final String? _message;
 
-  ConnectionException([this._message]);
+  NoConnectionException([this._message]);
 
   @override
   String toString() {

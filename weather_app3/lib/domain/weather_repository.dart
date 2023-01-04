@@ -21,7 +21,7 @@ class WeatherRepository {
   Future<Either<DataError, Weather>> getWeatherByCityId(String cityId, {bool remote = false}) =>
       (!_checkDataValidity() || cityId != _previousCityId || remote)
           ? _getRemoteWeatherByCityId(cityId)
-          : _getLocalWeatherByCityId(cityId);
+          : _getLocalWeatherByCityId();
 
   Future<Either<DataError, Weather>> _getRemoteWeatherByCityId(String cityId) =>
       _apiService.getWeatherByCityId(cityId).then<Either<DataError, Weather>>((value) {
@@ -35,11 +35,11 @@ class WeatherRepository {
         return Left<DataError, Weather>(e.toDataError());
       });
 
-  Future<Either<DataError, Weather>> _getLocalWeatherByCityId(String cityId) =>
-      _dbService.getWeatherByCityId(cityId).then(
-          (value) => value == null ? (_getRemoteWeatherByCityId(cityId) as Either<DataError, Weather>) : Right(value));
+  Future<Either<DataError, Weather>> _getLocalWeatherByCityId() =>
+      _dbService.getWeatherByCityId(_previousCityId!).then((value) =>
+          value == null ? (_getRemoteWeatherByCityId(_previousCityId!) as Either<DataError, Weather>) : Right(value));
 
-  bool _checkDataValidity() => DateTime.now().difference(_lastRemoteFetch) < const Duration(seconds: 15) ? true : false;
+  bool _checkDataValidity() => DateTime.now().difference(_lastRemoteFetch).inSeconds < 15 ? true : false;
 }
 
 extension _WeatherRespToEntityExtension on WeatherResp {

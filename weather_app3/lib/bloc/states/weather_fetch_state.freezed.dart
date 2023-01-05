@@ -16,32 +16,28 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$WeatherFetchState {
-  String get selectedCityId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Weather currentWeather, String selectedCityId)
-        hasData,
-    required TResult Function(String selectedCityId) loading,
-    required TResult Function(String selectedCityId, String? message) error,
-    required TResult Function(String selectedCityId, String? message)
-        noConnectionError,
+    required TResult Function(Weather currentWeather) hasData,
+    required TResult Function() loading,
+    required TResult Function(String? message) error,
+    required TResult Function(String? message) noConnectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Weather currentWeather, String selectedCityId)? hasData,
-    TResult? Function(String selectedCityId)? loading,
-    TResult? Function(String selectedCityId, String? message)? error,
-    TResult? Function(String selectedCityId, String? message)?
-        noConnectionError,
+    TResult? Function(Weather currentWeather)? hasData,
+    TResult? Function()? loading,
+    TResult? Function(String? message)? error,
+    TResult? Function(String? message)? noConnectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Weather currentWeather, String selectedCityId)? hasData,
-    TResult Function(String selectedCityId)? loading,
-    TResult Function(String selectedCityId, String? message)? error,
-    TResult Function(String selectedCityId, String? message)? noConnectionError,
+    TResult Function(Weather currentWeather)? hasData,
+    TResult Function()? loading,
+    TResult Function(String? message)? error,
+    TResult Function(String? message)? noConnectionError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -71,10 +67,6 @@ mixin _$WeatherFetchState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $WeatherFetchStateCopyWith<WeatherFetchState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -82,8 +74,6 @@ abstract class $WeatherFetchStateCopyWith<$Res> {
   factory $WeatherFetchStateCopyWith(
           WeatherFetchState value, $Res Function(WeatherFetchState) then) =
       _$WeatherFetchStateCopyWithImpl<$Res, WeatherFetchState>;
-  @useResult
-  $Res call({String selectedCityId});
 }
 
 /// @nodoc
@@ -95,30 +85,15 @@ class _$WeatherFetchStateCopyWithImpl<$Res, $Val extends WeatherFetchState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? selectedCityId = null,
-  }) {
-    return _then(_value.copyWith(
-      selectedCityId: null == selectedCityId
-          ? _value.selectedCityId
-          : selectedCityId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_WeatherFetchDataStateCopyWith<$Res>
-    implements $WeatherFetchStateCopyWith<$Res> {
+abstract class _$$_WeatherFetchDataStateCopyWith<$Res> {
   factory _$$_WeatherFetchDataStateCopyWith(_$_WeatherFetchDataState value,
           $Res Function(_$_WeatherFetchDataState) then) =
       __$$_WeatherFetchDataStateCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({Weather currentWeather, String selectedCityId});
+  $Res call({Weather currentWeather});
 }
 
 /// @nodoc
@@ -133,36 +108,27 @@ class __$$_WeatherFetchDataStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentWeather = null,
-    Object? selectedCityId = null,
   }) {
     return _then(_$_WeatherFetchDataState(
       currentWeather: null == currentWeather
           ? _value.currentWeather
           : currentWeather // ignore: cast_nullable_to_non_nullable
               as Weather,
-      selectedCityId: null == selectedCityId
-          ? _value.selectedCityId
-          : selectedCityId // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_WeatherFetchDataState extends _WeatherFetchDataState {
-  const _$_WeatherFetchDataState(
-      {required this.currentWeather, required this.selectedCityId})
-      : super._();
+class _$_WeatherFetchDataState implements _WeatherFetchDataState {
+  const _$_WeatherFetchDataState({required this.currentWeather});
 
   @override
   final Weather currentWeather;
-  @override
-  final String selectedCityId;
 
   @override
   String toString() {
-    return 'WeatherFetchState.hasData(currentWeather: $currentWeather, selectedCityId: $selectedCityId)';
+    return 'WeatherFetchState.hasData(currentWeather: $currentWeather)';
   }
 
   @override
@@ -171,13 +137,11 @@ class _$_WeatherFetchDataState extends _WeatherFetchDataState {
         (other.runtimeType == runtimeType &&
             other is _$_WeatherFetchDataState &&
             (identical(other.currentWeather, currentWeather) ||
-                other.currentWeather == currentWeather) &&
-            (identical(other.selectedCityId, selectedCityId) ||
-                other.selectedCityId == selectedCityId));
+                other.currentWeather == currentWeather));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentWeather, selectedCityId);
+  int get hashCode => Object.hash(runtimeType, currentWeather);
 
   @JsonKey(ignore: true)
   @override
@@ -189,39 +153,36 @@ class _$_WeatherFetchDataState extends _WeatherFetchDataState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Weather currentWeather, String selectedCityId)
-        hasData,
-    required TResult Function(String selectedCityId) loading,
-    required TResult Function(String selectedCityId, String? message) error,
-    required TResult Function(String selectedCityId, String? message)
-        noConnectionError,
+    required TResult Function(Weather currentWeather) hasData,
+    required TResult Function() loading,
+    required TResult Function(String? message) error,
+    required TResult Function(String? message) noConnectionError,
   }) {
-    return hasData(currentWeather, selectedCityId);
+    return hasData(currentWeather);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Weather currentWeather, String selectedCityId)? hasData,
-    TResult? Function(String selectedCityId)? loading,
-    TResult? Function(String selectedCityId, String? message)? error,
-    TResult? Function(String selectedCityId, String? message)?
-        noConnectionError,
+    TResult? Function(Weather currentWeather)? hasData,
+    TResult? Function()? loading,
+    TResult? Function(String? message)? error,
+    TResult? Function(String? message)? noConnectionError,
   }) {
-    return hasData?.call(currentWeather, selectedCityId);
+    return hasData?.call(currentWeather);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Weather currentWeather, String selectedCityId)? hasData,
-    TResult Function(String selectedCityId)? loading,
-    TResult Function(String selectedCityId, String? message)? error,
-    TResult Function(String selectedCityId, String? message)? noConnectionError,
+    TResult Function(Weather currentWeather)? hasData,
+    TResult Function()? loading,
+    TResult Function(String? message)? error,
+    TResult Function(String? message)? noConnectionError,
     required TResult orElse(),
   }) {
     if (hasData != null) {
-      return hasData(currentWeather, selectedCityId);
+      return hasData(currentWeather);
     }
     return orElse();
   }
@@ -265,31 +226,22 @@ class _$_WeatherFetchDataState extends _WeatherFetchDataState {
   }
 }
 
-abstract class _WeatherFetchDataState extends WeatherFetchState {
+abstract class _WeatherFetchDataState implements WeatherFetchState {
   const factory _WeatherFetchDataState(
-      {required final Weather currentWeather,
-      required final String selectedCityId}) = _$_WeatherFetchDataState;
-  const _WeatherFetchDataState._() : super._();
+      {required final Weather currentWeather}) = _$_WeatherFetchDataState;
 
   Weather get currentWeather;
-  @override
-  String get selectedCityId;
-  @override
   @JsonKey(ignore: true)
   _$$_WeatherFetchDataStateCopyWith<_$_WeatherFetchDataState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_WeatherFetchLoadingStateCopyWith<$Res>
-    implements $WeatherFetchStateCopyWith<$Res> {
+abstract class _$$_WeatherFetchLoadingStateCopyWith<$Res> {
   factory _$$_WeatherFetchLoadingStateCopyWith(
           _$_WeatherFetchLoadingState value,
           $Res Function(_$_WeatherFetchLoadingState) then) =
       __$$_WeatherFetchLoadingStateCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String selectedCityId});
 }
 
 /// @nodoc
@@ -299,89 +251,61 @@ class __$$_WeatherFetchLoadingStateCopyWithImpl<$Res>
   __$$_WeatherFetchLoadingStateCopyWithImpl(_$_WeatherFetchLoadingState _value,
       $Res Function(_$_WeatherFetchLoadingState) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? selectedCityId = null,
-  }) {
-    return _then(_$_WeatherFetchLoadingState(
-      selectedCityId: null == selectedCityId
-          ? _value.selectedCityId
-          : selectedCityId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$_WeatherFetchLoadingState extends _WeatherFetchLoadingState {
-  const _$_WeatherFetchLoadingState({required this.selectedCityId}) : super._();
-
-  @override
-  final String selectedCityId;
+class _$_WeatherFetchLoadingState implements _WeatherFetchLoadingState {
+  const _$_WeatherFetchLoadingState();
 
   @override
   String toString() {
-    return 'WeatherFetchState.loading(selectedCityId: $selectedCityId)';
+    return 'WeatherFetchState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WeatherFetchLoadingState &&
-            (identical(other.selectedCityId, selectedCityId) ||
-                other.selectedCityId == selectedCityId));
+            other is _$_WeatherFetchLoadingState);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedCityId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_WeatherFetchLoadingStateCopyWith<_$_WeatherFetchLoadingState>
-      get copyWith => __$$_WeatherFetchLoadingStateCopyWithImpl<
-          _$_WeatherFetchLoadingState>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Weather currentWeather, String selectedCityId)
-        hasData,
-    required TResult Function(String selectedCityId) loading,
-    required TResult Function(String selectedCityId, String? message) error,
-    required TResult Function(String selectedCityId, String? message)
-        noConnectionError,
+    required TResult Function(Weather currentWeather) hasData,
+    required TResult Function() loading,
+    required TResult Function(String? message) error,
+    required TResult Function(String? message) noConnectionError,
   }) {
-    return loading(selectedCityId);
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Weather currentWeather, String selectedCityId)? hasData,
-    TResult? Function(String selectedCityId)? loading,
-    TResult? Function(String selectedCityId, String? message)? error,
-    TResult? Function(String selectedCityId, String? message)?
-        noConnectionError,
+    TResult? Function(Weather currentWeather)? hasData,
+    TResult? Function()? loading,
+    TResult? Function(String? message)? error,
+    TResult? Function(String? message)? noConnectionError,
   }) {
-    return loading?.call(selectedCityId);
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Weather currentWeather, String selectedCityId)? hasData,
-    TResult Function(String selectedCityId)? loading,
-    TResult Function(String selectedCityId, String? message)? error,
-    TResult Function(String selectedCityId, String? message)? noConnectionError,
+    TResult Function(Weather currentWeather)? hasData,
+    TResult Function()? loading,
+    TResult Function(String? message)? error,
+    TResult Function(String? message)? noConnectionError,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(selectedCityId);
+      return loading();
     }
     return orElse();
   }
@@ -425,28 +349,17 @@ class _$_WeatherFetchLoadingState extends _WeatherFetchLoadingState {
   }
 }
 
-abstract class _WeatherFetchLoadingState extends WeatherFetchState {
-  const factory _WeatherFetchLoadingState(
-      {required final String selectedCityId}) = _$_WeatherFetchLoadingState;
-  const _WeatherFetchLoadingState._() : super._();
-
-  @override
-  String get selectedCityId;
-  @override
-  @JsonKey(ignore: true)
-  _$$_WeatherFetchLoadingStateCopyWith<_$_WeatherFetchLoadingState>
-      get copyWith => throw _privateConstructorUsedError;
+abstract class _WeatherFetchLoadingState implements WeatherFetchState {
+  const factory _WeatherFetchLoadingState() = _$_WeatherFetchLoadingState;
 }
 
 /// @nodoc
-abstract class _$$_WeatherFetchErrorCopyWith<$Res>
-    implements $WeatherFetchStateCopyWith<$Res> {
+abstract class _$$_WeatherFetchErrorCopyWith<$Res> {
   factory _$$_WeatherFetchErrorCopyWith(_$_WeatherFetchError value,
           $Res Function(_$_WeatherFetchError) then) =
       __$$_WeatherFetchErrorCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String selectedCityId, String? message});
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -460,14 +373,9 @@ class __$$_WeatherFetchErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedCityId = null,
     Object? message = freezed,
   }) {
     return _then(_$_WeatherFetchError(
-      selectedCityId: null == selectedCityId
-          ? _value.selectedCityId
-          : selectedCityId // ignore: cast_nullable_to_non_nullable
-              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -478,18 +386,15 @@ class __$$_WeatherFetchErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WeatherFetchError extends _WeatherFetchError {
-  const _$_WeatherFetchError({required this.selectedCityId, this.message})
-      : super._();
+class _$_WeatherFetchError implements _WeatherFetchError {
+  const _$_WeatherFetchError({this.message});
 
-  @override
-  final String selectedCityId;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'WeatherFetchState.error(selectedCityId: $selectedCityId, message: $message)';
+    return 'WeatherFetchState.error(message: $message)';
   }
 
   @override
@@ -497,13 +402,11 @@ class _$_WeatherFetchError extends _WeatherFetchError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WeatherFetchError &&
-            (identical(other.selectedCityId, selectedCityId) ||
-                other.selectedCityId == selectedCityId) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedCityId, message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
@@ -515,39 +418,36 @@ class _$_WeatherFetchError extends _WeatherFetchError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Weather currentWeather, String selectedCityId)
-        hasData,
-    required TResult Function(String selectedCityId) loading,
-    required TResult Function(String selectedCityId, String? message) error,
-    required TResult Function(String selectedCityId, String? message)
-        noConnectionError,
+    required TResult Function(Weather currentWeather) hasData,
+    required TResult Function() loading,
+    required TResult Function(String? message) error,
+    required TResult Function(String? message) noConnectionError,
   }) {
-    return error(selectedCityId, message);
+    return error(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Weather currentWeather, String selectedCityId)? hasData,
-    TResult? Function(String selectedCityId)? loading,
-    TResult? Function(String selectedCityId, String? message)? error,
-    TResult? Function(String selectedCityId, String? message)?
-        noConnectionError,
+    TResult? Function(Weather currentWeather)? hasData,
+    TResult? Function()? loading,
+    TResult? Function(String? message)? error,
+    TResult? Function(String? message)? noConnectionError,
   }) {
-    return error?.call(selectedCityId, message);
+    return error?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Weather currentWeather, String selectedCityId)? hasData,
-    TResult Function(String selectedCityId)? loading,
-    TResult Function(String selectedCityId, String? message)? error,
-    TResult Function(String selectedCityId, String? message)? noConnectionError,
+    TResult Function(Weather currentWeather)? hasData,
+    TResult Function()? loading,
+    TResult Function(String? message)? error,
+    TResult Function(String? message)? noConnectionError,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(selectedCityId, message);
+      return error(message);
     }
     return orElse();
   }
@@ -591,31 +491,24 @@ class _$_WeatherFetchError extends _WeatherFetchError {
   }
 }
 
-abstract class _WeatherFetchError extends WeatherFetchState {
-  const factory _WeatherFetchError(
-      {required final String selectedCityId,
-      final String? message}) = _$_WeatherFetchError;
-  const _WeatherFetchError._() : super._();
+abstract class _WeatherFetchError implements WeatherFetchState {
+  const factory _WeatherFetchError({final String? message}) =
+      _$_WeatherFetchError;
 
-  @override
-  String get selectedCityId;
   String? get message;
-  @override
   @JsonKey(ignore: true)
   _$$_WeatherFetchErrorCopyWith<_$_WeatherFetchError> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_WeatherFetchNoConnectionErrorCopyWith<$Res>
-    implements $WeatherFetchStateCopyWith<$Res> {
+abstract class _$$_WeatherFetchNoConnectionErrorCopyWith<$Res> {
   factory _$$_WeatherFetchNoConnectionErrorCopyWith(
           _$_WeatherFetchNoConnectionError value,
           $Res Function(_$_WeatherFetchNoConnectionError) then) =
       __$$_WeatherFetchNoConnectionErrorCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String selectedCityId, String? message});
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -631,14 +524,9 @@ class __$$_WeatherFetchNoConnectionErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedCityId = null,
     Object? message = freezed,
   }) {
     return _then(_$_WeatherFetchNoConnectionError(
-      selectedCityId: null == selectedCityId
-          ? _value.selectedCityId
-          : selectedCityId // ignore: cast_nullable_to_non_nullable
-              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -649,19 +537,16 @@ class __$$_WeatherFetchNoConnectionErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WeatherFetchNoConnectionError extends _WeatherFetchNoConnectionError {
-  const _$_WeatherFetchNoConnectionError(
-      {required this.selectedCityId, this.message})
-      : super._();
+class _$_WeatherFetchNoConnectionError
+    implements _WeatherFetchNoConnectionError {
+  const _$_WeatherFetchNoConnectionError({this.message});
 
-  @override
-  final String selectedCityId;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'WeatherFetchState.noConnectionError(selectedCityId: $selectedCityId, message: $message)';
+    return 'WeatherFetchState.noConnectionError(message: $message)';
   }
 
   @override
@@ -669,13 +554,11 @@ class _$_WeatherFetchNoConnectionError extends _WeatherFetchNoConnectionError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WeatherFetchNoConnectionError &&
-            (identical(other.selectedCityId, selectedCityId) ||
-                other.selectedCityId == selectedCityId) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedCityId, message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
@@ -687,39 +570,36 @@ class _$_WeatherFetchNoConnectionError extends _WeatherFetchNoConnectionError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Weather currentWeather, String selectedCityId)
-        hasData,
-    required TResult Function(String selectedCityId) loading,
-    required TResult Function(String selectedCityId, String? message) error,
-    required TResult Function(String selectedCityId, String? message)
-        noConnectionError,
+    required TResult Function(Weather currentWeather) hasData,
+    required TResult Function() loading,
+    required TResult Function(String? message) error,
+    required TResult Function(String? message) noConnectionError,
   }) {
-    return noConnectionError(selectedCityId, message);
+    return noConnectionError(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Weather currentWeather, String selectedCityId)? hasData,
-    TResult? Function(String selectedCityId)? loading,
-    TResult? Function(String selectedCityId, String? message)? error,
-    TResult? Function(String selectedCityId, String? message)?
-        noConnectionError,
+    TResult? Function(Weather currentWeather)? hasData,
+    TResult? Function()? loading,
+    TResult? Function(String? message)? error,
+    TResult? Function(String? message)? noConnectionError,
   }) {
-    return noConnectionError?.call(selectedCityId, message);
+    return noConnectionError?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Weather currentWeather, String selectedCityId)? hasData,
-    TResult Function(String selectedCityId)? loading,
-    TResult Function(String selectedCityId, String? message)? error,
-    TResult Function(String selectedCityId, String? message)? noConnectionError,
+    TResult Function(Weather currentWeather)? hasData,
+    TResult Function()? loading,
+    TResult Function(String? message)? error,
+    TResult Function(String? message)? noConnectionError,
     required TResult orElse(),
   }) {
     if (noConnectionError != null) {
-      return noConnectionError(selectedCityId, message);
+      return noConnectionError(message);
     }
     return orElse();
   }
@@ -763,16 +643,11 @@ class _$_WeatherFetchNoConnectionError extends _WeatherFetchNoConnectionError {
   }
 }
 
-abstract class _WeatherFetchNoConnectionError extends WeatherFetchState {
-  const factory _WeatherFetchNoConnectionError(
-      {required final String selectedCityId,
-      final String? message}) = _$_WeatherFetchNoConnectionError;
-  const _WeatherFetchNoConnectionError._() : super._();
+abstract class _WeatherFetchNoConnectionError implements WeatherFetchState {
+  const factory _WeatherFetchNoConnectionError({final String? message}) =
+      _$_WeatherFetchNoConnectionError;
 
-  @override
-  String get selectedCityId;
   String? get message;
-  @override
   @JsonKey(ignore: true)
   _$$_WeatherFetchNoConnectionErrorCopyWith<_$_WeatherFetchNoConnectionError>
       get copyWith => throw _privateConstructorUsedError;

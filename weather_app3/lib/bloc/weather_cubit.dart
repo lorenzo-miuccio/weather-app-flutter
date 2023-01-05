@@ -12,28 +12,29 @@ class WeatherCubit extends Cubit<WeatherFetchState> {
   WeatherCubit({required CitiesRepository citiesRepo, required WeatherRepository weatherRepo})
       : _weatherRepo = weatherRepo,
         _citiesRepo = citiesRepo,
-        super(WeatherFetchState.loading(selectedCityId: citiesRepo.getCityKeyValue()));
+        super(const WeatherFetchState.loading());
 
   void newSelectedCity(String newCityId) => _citiesRepo.updateCityKeyValue(newCityId).then((_) => refreshWeatherData(remote: true));
 
   void refreshWeatherData({bool remote = false}) {
-    final cityId = _getSelectedCityId();
-    emit(WeatherFetchState.loading(selectedCityId: cityId));
-    _weatherRepo.getWeatherByCityId(cityId, remote: remote).then(
+
+    emit(const WeatherFetchState.loading());
+    _weatherRepo.getWeatherByCityId(getSelectedCityId(), remote: remote).then(
           (value) => value.fold(
-            (e) => emit(e.toWeatherFetchState(cityId)),
-            (value) => emit(WeatherFetchState.hasData(currentWeather: value, selectedCityId: cityId)),
+            (e) => emit(e.toWeatherFetchState()),
+            (value) => emit(WeatherFetchState.hasData(currentWeather: value,)),
           ),
         );
   }
 
-  String _getSelectedCityId() => _citiesRepo.keyValueService.getSavedCityId();
+  String getSelectedCityId() => _citiesRepo.keyValueService.getSavedCityId();
+
 }
 
 extension _DataErrorToWeatherFetchStateExtension on DataError {
-  WeatherFetchState toWeatherFetchState(String cityId) => maybeMap(
-        noConnection: (nc) => WeatherFetchState.noConnectionError(selectedCityId: cityId),
-        orElse: () => WeatherFetchState.error(selectedCityId: cityId),
+  WeatherFetchState toWeatherFetchState() => maybeMap(
+        noConnection: (nc) => const WeatherFetchState.noConnectionError(),
+        orElse: () => const WeatherFetchState.error(),
       );
 }
 

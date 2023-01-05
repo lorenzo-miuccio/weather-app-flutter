@@ -50,7 +50,6 @@ class AllWeatherData extends StatelessWidget {
                   await Navigator.of(context).pushNamed(WeatherDetailsPage.routeName);
                   cubit.refreshWeatherData();
                 },
-                // closed cubit?
                 child: WeatherImageWidget(
                   iconPath: currentWeather.iconPath,
                   imageHeight: 240,

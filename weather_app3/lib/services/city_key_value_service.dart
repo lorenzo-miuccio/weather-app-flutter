@@ -1,11 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weather_app/domain/shared/key_value_services.dart';
 
-abstract class CityKeyValueService {
-
-  Future<void> updateSavedCityId(String cityId);
-
-  String getSavedCityId();
-}
 
 class CityKeyValueServiceImpl implements CityKeyValueService {
   final SharedPreferences _prefs;

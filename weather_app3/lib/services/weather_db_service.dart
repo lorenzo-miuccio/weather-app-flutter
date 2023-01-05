@@ -1,6 +1,6 @@
-import 'package:weather_app/databases/weather_dao.dart';
-import 'package:weather_app/models/weather.dart';
+import 'package:weather_app/domain/models/weather.dart';
 import 'package:weather_app/services/api_extensions.dart';
+import 'package:weather_app/services/databases/weather_dao.dart';
 
 abstract class WeatherDBService {
   Future<Weather?> getWeatherByCityId(String cityId);

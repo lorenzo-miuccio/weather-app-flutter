@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/models/specific_weather_data.dart';
-import 'package:weather_app/pages/common_widgets/specific_weather_data_element.dart';
+import 'package:weather_app/domain/models/specific_weather_data.dart';
+import 'package:weather_app/ui/pages/common_widgets/specific_weather_data_element.dart';
 
 class SpecificWeatherDataRow extends StatelessWidget {
   final List<SpecificWeatherData> _weatherDataList;

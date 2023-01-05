@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/pages/common_widgets/display_weather_fetch_state.dart';
+import 'package:weather_app/ui/pages/common_widgets/display_weather_fetch_state.dart';
 
 class WeatherDetailsPage extends StatelessWidget {
 

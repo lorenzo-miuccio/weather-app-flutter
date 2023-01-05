@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:weather_app/models/exceptions.dart';
-import 'package:weather_app/models/api_response_entities/weather_resp.dart';
-import 'package:weather_app/models/data_error.dart';
-import 'package:weather_app/models/either.dart';
-import 'package:weather_app/models/weather.dart';
+import 'package:weather_app/domain/models/api_response_entities/weather_resp.dart';
+import 'package:weather_app/domain/models/data_error.dart';
+import 'package:weather_app/domain/models/either.dart';
+import 'package:weather_app/domain/models/exceptions.dart';
+import 'package:weather_app/domain/models/weather.dart';
 import 'package:weather_app/services/weather_api_service.dart';
 import 'package:weather_app/services/weather_db_service.dart';
 

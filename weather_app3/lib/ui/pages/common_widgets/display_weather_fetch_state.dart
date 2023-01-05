@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/bloc/states/weather_fetch_state.dart';
-import 'package:weather_app/bloc/weather_cubit.dart';
-import 'package:weather_app/pages/common_widgets/error_widgets/generic_error.dart';
-import 'package:weather_app/pages/common_widgets/error_widgets/no_connection_error.dart';
-import 'package:weather_app/pages/weather_details/details_widget.dart';
-import 'package:weather_app/pages/weather_home/widgets/all_weather_data.dart';
-import 'package:weather_app/pages/common_widgets/loading_widget.dart';
+import 'package:weather_app/ui/bloc/states/weather_fetch_state.dart';
+import 'package:weather_app/ui/bloc/weather_cubit.dart';
+import 'package:weather_app/ui/pages/common_widgets/error_widgets/generic_error.dart';
+import 'package:weather_app/ui/pages/common_widgets/error_widgets/no_connection_error.dart';
+import 'package:weather_app/ui/pages/common_widgets/loading_widget.dart';
+import 'package:weather_app/ui/pages/weather_details/details_widget.dart';
+import 'package:weather_app/ui/pages/weather_home/widgets/all_weather_data.dart';
 
 enum PageName {
   home,

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:weather_app/models/exceptions.dart';
-
+import 'package:weather_app/domain/models/exceptions.dart';
 // extension CatchApiRequestDataErrorsExtension<R> on Future<R> {
 //   Future<Either<DataError, R>> catchApiRequestErrors() => then<Either<DataError, R>>((value) => Right(value)).catchError((e, s) {
 //         switch (e.runtimeType) {

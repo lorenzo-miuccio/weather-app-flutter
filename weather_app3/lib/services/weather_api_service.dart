@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:weather_app/models/api_response_entities/weather_main_resp.dart';
-import 'package:weather_app/models/api_response_entities/weather_sun_times_resp.dart';
-import 'package:weather_app/models/api_response_entities/weather_resp.dart';
-import 'package:weather_app/models/api_response_entities/weather_wind_resp.dart';
+import 'package:weather_app/domain/models/api_response_entities/weather_main_resp.dart';
+import 'package:weather_app/domain/models/api_response_entities/weather_resp.dart';
+import 'package:weather_app/domain/models/api_response_entities/weather_sun_times_resp.dart';
+import 'package:weather_app/domain/models/api_response_entities/weather_wind_resp.dart';
 import 'package:weather_app/services/api_extensions.dart';
 
 import 'network/weather_api.dart';

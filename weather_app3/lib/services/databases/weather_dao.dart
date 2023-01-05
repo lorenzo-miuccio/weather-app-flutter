@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:weather_app/models/weather.dart';
+import 'package:weather_app/domain/models/weather.dart';
 
 @dao
 abstract class WeatherDao {

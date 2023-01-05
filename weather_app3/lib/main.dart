@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/domain/cities_repository.dart';
-import 'package:weather_app/domain/weather_repository.dart';
+import 'package:weather_app/domain/weather/weather_repository.dart';
 import 'package:weather_app/services/city_key_value_service.dart';
 import 'package:weather_app/services/databases/weather_database.dart';
 import 'package:weather_app/services/weather_api_service.dart';

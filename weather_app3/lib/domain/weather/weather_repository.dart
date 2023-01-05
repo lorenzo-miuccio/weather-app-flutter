@@ -5,8 +5,7 @@ import 'package:weather_app/domain/models/data_error.dart';
 import 'package:weather_app/domain/models/either.dart';
 import 'package:weather_app/domain/models/exceptions.dart';
 import 'package:weather_app/domain/models/weather.dart';
-import 'package:weather_app/services/weather_api_service.dart';
-import 'package:weather_app/services/weather_db_service.dart';
+import 'package:weather_app/domain/weather/weather_services.dart';
 
 class WeatherRepository {
   final WeatherApiService _apiService;
@@ -19,9 +18,7 @@ class WeatherRepository {
         _dbService = dbService;
 
   Future<Either<DataError, Weather>> getWeatherByCityId(String cityId, {bool remote = false}) =>
-      (!_checkDataValidity() || cityId != _previousCityId || remote)
-          ? _getRemoteWeatherByCityId(cityId)
-          : _getLocalWeather();
+      (!_checkDataValidity() || cityId != _previousCityId || remote) ? _getRemoteWeatherByCityId(cityId) : _getLocalWeather();
 
   Future<Either<DataError, Weather>> _getRemoteWeatherByCityId(String cityId) =>
       _apiService.getWeatherByCityId(cityId).then<Either<DataError, Weather>>((value) {
@@ -35,9 +32,9 @@ class WeatherRepository {
         return Left<DataError, Weather>(e.toDataError());
       });
 
-  Future<Either<DataError, Weather>> _getLocalWeather() =>
-      _dbService.getWeatherByCityId(_previousCityId!).then((value) =>
-          value == null ? (_getRemoteWeatherByCityId(_previousCityId!) as Either<DataError, Weather>) : Right(value));
+  Future<Either<DataError, Weather>> _getLocalWeather() => _dbService
+      .getWeatherByCityId(_previousCityId!)
+      .then((value) => value == null ? (_getRemoteWeatherByCityId(_previousCityId!) as Either<DataError, Weather>) : Right(value));
 
   bool _checkDataValidity() => DateTime.now().difference(_lastRemoteFetch).inSeconds < 15 ? true : false;
 }

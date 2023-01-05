@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/ui/bloc/weather_cubit.dart';
 import 'package:weather_app/ui/pages/common_widgets/display_weather_fetch_state.dart';
-
-import 'widgets/dropdown_menu.dart';
+import 'package:weather_app/ui/pages/weather_home/widgets/dropdown_menu.dart';
 
 //Widget that displays whole page composed by the dropdown menu for city selection and weather report (WeatherSection)
 class WeatherHomePage extends StatelessWidget {

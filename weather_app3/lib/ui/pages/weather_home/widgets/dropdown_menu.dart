@@ -1,6 +1,6 @@
+import 'package:domain/cities_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/domain/cities_repository.dart';
 import 'package:weather_app/ui/bloc/weather_cubit.dart';
 
 class DropdownMenu extends StatefulWidget {

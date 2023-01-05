@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:weather_app/domain/models/api_response_entities/weather_resp.dart';
-import 'package:weather_app/domain/models/data_error.dart';
-import 'package:weather_app/domain/models/either.dart';
-import 'package:weather_app/domain/models/exceptions.dart';
-import 'package:weather_app/domain/models/weather.dart';
-import 'package:weather_app/domain/weather/weather_services.dart';
+import 'package:domain/models/data_error.dart';
+import 'package:domain/models/either.dart';
+import 'package:domain/models/exceptions.dart';
+import 'package:domain/models/weather.dart';
+import 'package:domain/weather/weather_services.dart';
 
 class WeatherRepository {
   final WeatherApiService _apiService;
@@ -23,10 +22,9 @@ class WeatherRepository {
   Future<Either<DataError, Weather>> _getRemoteWeatherByCityId(String cityId) =>
       _apiService.getWeatherByCityId(cityId).then<Either<DataError, Weather>>((value) {
         _previousCityId = cityId;
-        final currentWeather = value.toEntity();
-        _dbService.insertWeather(currentWeather);
+        _dbService.insertWeather(value);
         _lastRemoteFetch = DateTime.now();
-        return Right(currentWeather);
+        return Right(value);
       }).catchError((e) {
         _lastRemoteFetch = DateTime.fromMillisecondsSinceEpoch(0);
         return Left<DataError, Weather>(e.toDataError());
@@ -37,30 +35,6 @@ class WeatherRepository {
       .then((value) => value == null ? (_getRemoteWeatherByCityId(_previousCityId!) as Either<DataError, Weather>) : Right(value));
 
   bool _checkDataValidity() => DateTime.now().difference(_lastRemoteFetch).inSeconds < 15 ? true : false;
-}
-
-extension _WeatherRespToEntityExtension on WeatherResp {
-  Weather toEntity() {
-    String iconPath = weather[0].iconPath;
-    String description = weather[0].description;
-
-    DateTime sunrise = sys.sunrise.add(Duration(seconds: timezoneInSeconds));
-    DateTime sunset = sys.sunset.add(Duration(seconds: timezoneInSeconds));
-
-    return Weather(
-      lastRemoteFetch: DateTime.now(),
-      temperature: main.temp,
-      humidity: main.humidity,
-      windSpeed: wind.speed,
-      sunset: sunset,
-      sunrise: sunrise,
-      iconPath: iconPath,
-      tempMax: main.tempMax,
-      tempMin: main.tempMin,
-      description: description,
-      cityId: '$cityName, ${sys.countryId}',
-    );
-  }
 }
 
 extension _DynamicDataErrorExtension on dynamic {

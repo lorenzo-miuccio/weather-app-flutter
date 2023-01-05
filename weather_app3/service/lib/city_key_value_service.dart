@@ -1,5 +1,5 @@
+import 'package:domain/shared/key_value_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:weather_app/domain/shared/key_value_services.dart';
 
 
 class CityKeyValueServiceImpl implements CityKeyValueService {

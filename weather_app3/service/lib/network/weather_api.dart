@@ -2,7 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:weather_app/domain/models/api_response_entities/weather_resp.dart';
+import 'package:service/api_response_entities/weather_resp.dart';
 
 part 'weather_api.g.dart';
 

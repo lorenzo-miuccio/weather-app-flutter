@@ -1,10 +1,4 @@
-// class containing all weather information used by the app to display the current weather
-import 'package:floor/floor.dart';
-
-
-@entity
 class Weather {
-  @primaryKey
   final String cityId;
 
   final String iconPath;
@@ -42,15 +36,14 @@ class WeatherDetails {
   final String cityId;
 
   WeatherDetails({required this.tempMin, required this.tempMax, required this.description, required this.iconPath, required this.cityId});
-
 }
 
 extension WeatherToDetailsExtension on Weather {
   WeatherDetails toDetails() => WeatherDetails(
-    tempMin: tempMin,
-    tempMax: tempMax,
-    iconPath: iconPath,
-    cityId: cityId,
-    description: description,
-  );
+        tempMin: tempMin,
+        tempMax: tempMax,
+        iconPath: iconPath,
+        cityId: cityId,
+        description: description,
+      );
 }

@@ -1,12 +1,12 @@
+import 'package:domain/models/weather.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/domain/models/specific_weather_data.dart';
-import 'package:weather_app/domain/models/weather.dart';
 import 'package:weather_app/ui/bloc/weather_cubit.dart';
 import 'package:weather_app/ui/pages/common_widgets/error_widgets/generic_error.dart';
 import 'package:weather_app/ui/pages/common_widgets/specific_weather_data_row.dart';
 import 'package:weather_app/ui/pages/common_widgets/weather_image.dart';
+import 'package:weather_app/ui/pages/weather_details/specific_weather_data.dart';
 import 'package:weather_app/ui/pages/weather_details/weather_details_page.dart';
 
 class AllWeatherData extends StatelessWidget {
@@ -31,15 +31,11 @@ class AllWeatherData extends StatelessWidget {
           ];
 
           final List<SpecificWeatherData> otherWeatherDataList = [
-            SpecificWeatherData(
-                CupertinoIcons.wind, '${currentWeather.windSpeed.toStringAsFixed(2)} km/h'),
+            SpecificWeatherData(CupertinoIcons.wind, '${currentWeather.windSpeed.toStringAsFixed(2)} km/h'),
             SpecificWeatherData(CupertinoIcons.drop, '${currentWeather.humidity}%')
           ];
 
-          final List<List<SpecificWeatherData>> allSpecificWeatherData = [
-            sunDataList,
-            otherWeatherDataList
-          ];
+          final List<List<SpecificWeatherData>> allSpecificWeatherData = [sunDataList, otherWeatherDataList];
 
           return Column(
             children: [
@@ -69,8 +65,7 @@ class AllWeatherData extends StatelessWidget {
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 30),
-                child: Text(
-                    'Last update: ${DateTime.now().difference(currentWeather.lastRemoteFetch).inSeconds} s',
+                child: Text('Last update: ${DateTime.now().difference(currentWeather.lastRemoteFetch).inSeconds} s',
                     style: const TextStyle(
                       color: Colors.blueGrey,
                       fontSize: 18,

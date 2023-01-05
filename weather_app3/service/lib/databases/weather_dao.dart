@@ -1,9 +1,8 @@
+import 'package:domain/models/weather.dart';
 import 'package:floor/floor.dart';
-import 'package:weather_app/domain/models/weather.dart';
 
 @dao
 abstract class WeatherDao {
-
   @Query('SELECT * FROM Weather WHERE cityId = :id')
   Future<Weather?> findWeatherByCityId(String id);
 

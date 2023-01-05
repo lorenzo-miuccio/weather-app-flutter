@@ -1,6 +1,6 @@
 
-import 'package:weather_app/domain/models/city.dart';
-import 'package:weather_app/domain/shared/key_value_services.dart';
+import 'package:domain/models/city.dart';
+import 'package:domain/shared/key_value_services.dart';
 
 class CitiesRepository {
 

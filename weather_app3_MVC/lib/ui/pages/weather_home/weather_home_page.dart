@@ -1,5 +1,6 @@
 import 'package:domain/controller/weather_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:weather_app/ui/pages/common_widgets/display_weather_fetch_state.dart';
 import 'package:weather_app/ui/pages/weather_home/widgets/dropdown_menu.dart';
 
@@ -9,7 +10,7 @@ class WeatherHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final weatherController = WeatherController.instance;
+    final weatherController = GetIt.instance.get<WeatherController>();
 
     return SafeArea(
       child: Scaffold(

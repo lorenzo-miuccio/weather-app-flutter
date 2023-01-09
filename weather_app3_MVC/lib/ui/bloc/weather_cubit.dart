@@ -5,17 +5,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/ui/bloc/states/weather_fetch_state.dart';
 
 
-class WeatherCubit extends Cubit<WeatherFetchState> implements WeatherCubitInterface  {
+class WeatherCubit extends Cubit<WeatherFetchState> implements WeatherControllerListener  {
   WeatherCubit() : super(const WeatherFetchState.loading());
 
   @override
-  void emitDataState(Weather weatherData) => emit(WeatherFetchState.hasData(currentWeather: weatherData));
+  void onData(Weather weatherData) => emit(WeatherFetchState.hasData(currentWeather: weatherData));
 
   @override
-  void emitErrorState(DataError error) => error.toWeatherFetchState();
+  void onGenericError(DataError error) => error.toWeatherFetchState();
 
   @override
-  void emitLoadingState() => emit(const WeatherFetchState.loading());
+  void onLoading() => emit(const WeatherFetchState.loading());
 }
 
 extension _DataErrorToWeatherFetchStateExtension on DataError {

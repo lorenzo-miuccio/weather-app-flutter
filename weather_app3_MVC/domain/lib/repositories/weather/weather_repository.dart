@@ -13,7 +13,7 @@ class WeatherRepository {
   DateTime _lastRemoteFetch = DateTime.fromMillisecondsSinceEpoch(0);
   String? _previousCityId;
 
-  WeatherRepository({apiService, dbService})
+  WeatherRepository({required WeatherApiService apiService, required WeatherDBService dbService})
       : _apiService = apiService,
         _dbService = dbService;
 

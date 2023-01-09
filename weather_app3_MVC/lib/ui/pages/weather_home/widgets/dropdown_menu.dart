@@ -1,6 +1,7 @@
 import 'package:domain/controller/weather_controller.dart';
 import 'package:domain/repositories/cities_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 
 class DropdownMenu extends StatefulWidget {
@@ -11,15 +12,7 @@ class DropdownMenu extends StatefulWidget {
 }
 
 class _DropdownMenuState extends State<DropdownMenu> {
-  late WeatherController weatherController;
-  late String selectedCityId;
-
-  @override
-  void didChangeDependencies() {
-    weatherController = WeatherController.instance;
-    selectedCityId = weatherController.getSelectedCityId();
-    super.didChangeDependencies();
-  }
+  String selectedCityId = GetIt.instance.get<WeatherController>().getSelectedCityId();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +36,7 @@ class _DropdownMenuState extends State<DropdownMenu> {
               )
               .toList(),
           onChanged: (value) {
-            weatherController.newSelectedCity(value!);
+            GetIt.instance.get<WeatherController>().newSelectedCity(value!);
             setState(() => selectedCityId = value);
           },
         ),

@@ -3,6 +3,7 @@ import 'package:domain/models/weather.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:weather_app/ui/bloc/weather_cubit.dart';
 import 'package:weather_app/ui/pages/common_widgets/error_widgets/generic_error.dart';
 import 'package:weather_app/ui/pages/common_widgets/specific_weather_data_row.dart';
@@ -42,7 +43,7 @@ class AllWeatherData extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  final controller = WeatherController.instance;
+                  final controller = GetIt.instance.get<WeatherController>();
                   controller.refreshWeatherData(forceRemoteFetch: true);
                   Navigator.of(context)
                       .pushNamed(WeatherDetailsPage.routeName)

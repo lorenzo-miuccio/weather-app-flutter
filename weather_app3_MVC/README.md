@@ -52,8 +52,8 @@ grazie a freezed con quattro diverse implementazioni tramite factory constructor
 Per il **controller** è stata definita la classe WeatherController con al suo interno metodi che
 sono chiamati dalla UI sfruttando la potenzialità del package get_it. Questi metodi vengono chiamati
 dalla ui in risposta ad un input dell'utente, ad esempio per il refresh del meteo o per la richiesta
-dei dati per una nuova città selezionata. 
-Il controller prende come dipenze tramite costrutture sia le repositories, per delegare il fetching dei dati, sia il cubit per aggiornare lo stato che verrà
+dei dati per una nuova città selezionata. Il controller prende come dipenze tramite costrutture sia
+le repositories, per delegare il fetching dei dati, sia il cubit per aggiornare lo stato che verrà
 riflesso dalla UI.
 
 #### Servizi e Repositories
@@ -79,3 +79,16 @@ riflesso dalla UI.
     - **CitiesRepository**: delega al CityKeyValueService il recupero e l'aggiornamento della città
       salvata come key-value. Inoltre contiene la lista delle città che è possibile selezionare  
       nell'app.
+
+### Modularizzazione
+
+L'app è stata suddivisa in tre layer (packages):
+
+- **App/UI**: contiene il file main.dart e i componenti della UI (widgets, bloc (presentation) ...).
+  Ha come dipendenze gli altri due packages;
+- **Domain**: package che non ha dipendenze dagli altri layer. Contiene gli elementi di Business
+  Logic e classi per la gestione dei dati (Repositories...). Le repositories dipendono da interfacce
+  dei servizi definite nello stesso domain layer. Non avendo dipendenze dal flutter SDK, si tratta
+  di un dart Package;
+- **Services**: contiene le implementazioni dei servizi per la comunicazione con data source
+  remoto (API) e locale (DB)

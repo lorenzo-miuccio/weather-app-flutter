@@ -23,11 +23,10 @@ Skill assessment: settimana 6
 ### Architecture
 
 Come modifica principale al funzionamento della weather app 2 è stato proposto di salvare i dati in
-un database una volta ricevuti dalla richiesta all'API. 
-È stato quindi introdotto il concetto di **Repository pattern** (pratica per il reperimento e salvataggio dei dati in locale) e di **Single
+un database una volta ricevuti dalla richiesta all'API. È stato quindi introdotto il concetto di **
+Repository pattern** (pratica per il reperimento e salvataggio dei dati in locale) e di **Single
 Source of Truth**. Secondo quest'ultimo i dati passati alla UI devono provenire dallo stesso data
-source, anche in presenza più sorgenti.
-Nel nostro caso la UI mostra sempre i dati presenti in un
+source, anche in presenza più sorgenti. Nel nostro caso la UI mostra sempre i dati presenti in un
 database locale. All'interno di questo, i dati meteo vengono salvati/aggiornati quando si ritiene
 opportuno eseguire un fetch da remoto, ovvero quando viene selezionata una città diversa, si naviga
 nella pagina in dettaglio oppure se i dati nel database hanno perso la loro validità temporale. I
@@ -43,7 +42,8 @@ L'architettura dell'app è stata realizzata seguendo un pattern **MVP (Model - V
 - Il **Model** gestisce la logica di reperimento e salvataggio dei dati (in questo caso esso è  
   rappresentato dalle classi di domain: repositories); Mantiene lo stato applicativo;
 - La **View** rappresenta la UI (i widgets in questo caso) dell'applicazione quindi visualizza le  
-  informazioni e interagisce con l'utente. Inoltre passa le richieste dell'utente al presenter (mediante eventi) e viene aggiornata in base allo stato dello stesso;
+  informazioni e interagisce con l'utente. Inoltre passa le richieste dell'utente al presenter (
+  mediante eventi) e viene aggiornata in base allo stato dello stesso;
 - Il **Presenter** si pone al centro dell'architettura: riceve le richieste dalla view, interroga il
   model per ottenere le informazioni e le passa alla vista. Nel nostro caso questo è rappresentato
   dal Bloc.
@@ -102,3 +102,16 @@ freezed con quattro diverse implementazioni tramite factory constructors:
     - **CitiesRepository**: delega al CityKeyValueService il recupero e l'aggiornamento della città
       salvata come key-value. Inoltre contiene la lista delle città che è possibile selezionare  
       nell'app.
+
+### Modularizzazione
+
+L'app è stata suddivisa in tre layers (packages):
+
+- **App/UI**: contiene il file main.dart e i componenti della UI (widgets, bloc (presentation) ...).
+  Ha come dipendenze gli altri due packages;
+- **Domain**: dart package (non ha dipendenze da flutter SDK) che non ha dipendenze dagli altri
+  layers. Contiene gli elementi di Business Logic e classi per la gestione dei dati (
+  Repositories...). Le repositories dipendono da interfacce dei servizi definite nello stesso domain
+  layer;
+- **Services**: contiene le implementazioni dei servizi per la comunicazione con data source
+  remoto (API) e locale (DB)

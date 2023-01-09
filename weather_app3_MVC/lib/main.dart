@@ -1,13 +1,8 @@
-import 'package:domain/controller/app_connector.dart';
-import 'package:domain/repositories/cities_repository.dart';
-import 'package:domain/repositories/weather/weather_repository.dart';
+import 'package:domain/controller/weather_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:service/city_key_value_service.dart';
-import 'package:service/databases/weather_database.dart';
-import 'package:service/weather_api_service.dart';
-import 'package:service/weather_db_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_it/get_it.dart';
+import 'package:weather_app/get_it.dart';
 import 'package:weather_app/ui/bloc/weather_cubit.dart';
 import 'package:weather_app/ui/pages/weather_details/weather_details_page.dart';
 import 'package:weather_app/ui/pages/weather_home/weather_home_page.dart';
@@ -30,28 +25,10 @@ enum Env {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final weatherDB = await $FloorWeatherDatabase.databaseBuilder('weather_database.db').build();
-  final weatherDBService = WeatherDBServiceImpl(weatherDao: weatherDB.weatherDao);
-
-  final weatherApiService = WeatherApiServiceImpl();
-
-  final prefs = await SharedPreferences.getInstance();
-  final keyValueService = CityKeyValueServiceImpl(sharedPreferences: prefs);
-
-  final weatherCubit = WeatherCubit();
-
-  final weatherRepo = WeatherRepository(
-    apiService: weatherApiService,
-    dbService: weatherDBService,
-  );
-
-  final citiesRepo = CitiesRepository(keyValueService: keyValueService);
-
-  registerWeatherController(weatherRepository: weatherRepo, citiesRepository: citiesRepo, cubit: weatherCubit);
-
+  await registerDependencies();
   runApp(
     BlocProvider<WeatherCubit>(
-      create: (_) => weatherCubit,
+      create: (_) => GetIt.instance.get<WeatherControllerListener>() as WeatherCubit,
       child: const MyApp(),
     ),
   );

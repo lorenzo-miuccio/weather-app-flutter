@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:weather_app/controller/weather_controller.dart';
+import 'package:weather_app/domain/controller/app_connector.dart';
 import 'package:weather_app/databases/weather_database.dart';
-import 'package:weather_app/domain/cities_repository.dart';
+import 'package:weather_app/domain/repositories/cities_repository.dart';
 import 'package:weather_app/domain/weather/weather_repository.dart';
 import 'package:weather_app/pages/weather_details/weather_details_page.dart';
 import 'package:weather_app/pages/weather_home/weather_home_page.dart';
@@ -40,18 +40,20 @@ Future<void> main() async {
   final keyValueService = CityKeyValueServiceImpl(sharedPreferences: prefs);
 
   final weatherCubit = WeatherCubit();
+
+  final weatherRepo = WeatherRepository(
+    apiService: weatherApiService,
+    dbService: weatherDBService,
+  );
+
+  final citiesRepo = CitiesRepository(keyValueService: keyValueService);
+
+  registerWeatherController(weatherRepository: weatherRepo, citiesRepository: citiesRepo, cubit: weatherCubit);
+
   runApp(
     BlocProvider<WeatherCubit>(
       create: (_) => weatherCubit,
-      child: WeatherController(
-        citiesRepo: CitiesRepository(keyValueService: keyValueService),
-        weatherRepo: WeatherRepository(
-          apiService: weatherApiService,
-          dbService: weatherDBService,
-        ),
-        cubit: weatherCubit,
-        child: const MyApp(),
-      )..refreshWeatherData(),
+      child: const MyApp(),
     ),
   );
 }

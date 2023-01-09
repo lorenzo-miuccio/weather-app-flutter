@@ -9,7 +9,7 @@ class WeatherHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final weatherController = WeatherController.of(context);
+    final weatherController = WeatherController.instance;
 
     return SafeArea(
       child: Scaffold(

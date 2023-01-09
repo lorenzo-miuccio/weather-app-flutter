@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:weather_app/domain/weather/weather_services.dart';
-import 'package:weather_app/models/exceptions.dart';
-import 'package:weather_app/models/data_error.dart';
-import 'package:weather_app/models/either.dart';
-import 'package:weather_app/models/weather.dart';
+import 'package:domain/models/data_error.dart';
+import 'package:domain/models/either.dart';
+import 'package:domain/models/exceptions.dart';
+import 'package:domain/models/weather.dart';
+import 'package:domain/repositories/weather/weather_services.dart';
+
 
 class WeatherRepository {
   final WeatherApiService _apiService;

@@ -2,7 +2,6 @@
 
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:weather_app/models/api_response_entities/weather_resp.dart';
 
 part 'weather_api.g.dart';
 

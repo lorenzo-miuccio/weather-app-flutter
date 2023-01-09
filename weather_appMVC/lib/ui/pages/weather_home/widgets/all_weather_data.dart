@@ -42,7 +42,7 @@ class AllWeatherData extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  final controller = WeatherController.of(context);
+                  final controller = WeatherController.instance;
                   controller.refreshWeatherData(forceRemoteFetch: true);
                   Navigator.of(context)
                       .pushNamed(WeatherDetailsPage.routeName)

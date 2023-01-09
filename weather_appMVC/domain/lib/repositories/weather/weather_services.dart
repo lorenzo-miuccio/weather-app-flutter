@@ -1,4 +1,4 @@
-import 'package:weather_app/models/weather.dart';
+import 'package:domain/models/weather.dart';
 
 abstract class WeatherApiService {
   Future<Weather> getWeatherByCityId(String cityId);

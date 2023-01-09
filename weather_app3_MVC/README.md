@@ -20,6 +20,10 @@ Skill assessment: settimana 6
     - il package fornisce anche widget che facilitano l'aggiornamento della UI al cambiare dello    
       stato del bloc.
 
+- package **get_it**:
+    - semplice Service Locator che può sostituire l'uso di InheritedWidget o Provider per accedere
+      agli oggetti, ad esempio dalla UI.
+
 ### Architecture
 
 Pattern architetturale riprodotto: **MVC (Model - View - Controller)**:
@@ -35,7 +39,7 @@ Pattern architetturale riprodotto: **MVC (Model - View - Controller)**:
 Nel nostro caso il **model** è rappresentato da un Cubit (classe Bloc semplificata che  
 non fa affidamento a eventi per elaborare un nuovo stato ma sfrutta i metodi pubblici per farlo) che
 conserva lo stato di fetching dei dati. La classe stato (WeatherFetchState) è stata realizzata
-grazie a  freezed con quattro diverse implementazioni tramite factory constructors:
+grazie a freezed con quattro diverse implementazioni tramite factory constructors:
 
 - loading: l'utente ha richiesto l'aggiornamento dei dati e si attende la risposta della repository
 - hasData: la repository ha risposto alla richiesta con dei dati validi
@@ -45,12 +49,11 @@ grazie a  freezed con quattro diverse implementazioni tramite factory constructo
 - error: la repository ha risposto alla richiesta con un qualsiasi altro tipo di errore (database,
   http status, generico...)
 
-
-Per il **controller** è stato definito un inherited widget, in modo che i metodi al suo interno
-poassano essere chiamati da ogni widget presente nel tree. Questi metodi vengono chiamati dalla ui
-in risposta ad un input dell'utente, ad esempio per il refresh del meteo o per la richiesta dei dati
-per una nuova città selezionata.
-Il controller prende come dipenze tramite costrutturo sia le repositories, per delegare il fetching dei dati, sia il cubit per aggiornare lo stato che verrà
+Per il **controller** è stata definita la classe WeatherController con al suo interno metodi che
+sono chiamati dalla UI sfruttando la potenzialità del package get_it. Questi metodi vengono chiamati
+dalla ui in risposta ad un input dell'utente, ad esempio per il refresh del meteo o per la richiesta
+dei dati per una nuova città selezionata. 
+Il controller prende come dipenze tramite costrutture sia le repositories, per delegare il fetching dei dati, sia il cubit per aggiornare lo stato che verrà
 riflesso dalla UI.
 
 #### Servizi e Repositories

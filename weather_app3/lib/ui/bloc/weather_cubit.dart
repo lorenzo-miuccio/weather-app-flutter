@@ -27,7 +27,7 @@ class WeatherCubit extends Cubit<WeatherFetchState> {
         );
   }
 
-  String getSelectedCityId() => _citiesRepo.keyValueService.getSavedCityId();
+  String getSelectedCityId() => _citiesRepo.getCityKeyValue();
 
 }
 

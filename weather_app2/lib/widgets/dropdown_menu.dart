@@ -3,11 +3,11 @@ import 'package:weather_app/services/shared_preferences_service.dart';
 import '../models/city.dart';
 import '../provider/city_weather_notifier.dart';
 
-class DropdownMenu extends StatelessWidget {
+class CitySelectorMenu extends StatelessWidget {
 
   final void Function() refreshDataCallback;
 
-  const DropdownMenu({required this.refreshDataCallback, Key? key}) : super(key: key);
+  const CitySelectorMenu({required this.refreshDataCallback, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

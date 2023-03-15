@@ -22,6 +22,7 @@ class _WeatherSectionState extends State<WeatherSection> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    debugPrint('didchange');
     CitiesChangeNotifier? citiesData = CitiesInheritedNotifier.of(context);
     City? selectedCity = citiesData?.selectedCity;
 
@@ -32,6 +33,7 @@ class _WeatherSectionState extends State<WeatherSection> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('rebuild');
     return FutureBuilder(
       future: _currentWeather,
       builder: (context, snapshot) {

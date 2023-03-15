@@ -25,7 +25,7 @@ class CitiesWeatherPage extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 50, horizontal: 35),
                   child: Column(
                     children: const [
-                      DropdownMenu(),
+                      MyDropdownMenu(),
                       WeatherSection(),
                     ],
                   ),

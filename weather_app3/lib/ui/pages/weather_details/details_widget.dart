@@ -15,7 +15,6 @@ class DetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final weatherFetchState = BlocProvider.of<WeatherCubit>(context, listen: false).state;
 
-
     return weatherFetchState.maybeMap(hasData: (value) {
       final WeatherDetails details = value.currentWeather.toDetails();
       return Column(

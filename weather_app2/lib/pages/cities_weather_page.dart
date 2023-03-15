@@ -66,7 +66,7 @@ class _CitiesWeatherPageState extends State<CitiesWeatherPage> {
                       const EdgeInsets.symmetric(vertical: 50, horizontal: 35),
                   child: Column(
                     children: [
-                      DropdownMenu(
+                      CitySelectorMenu(
                         refreshDataCallback: _refreshWeatherData,
                       ),
                       const WeatherSection(),

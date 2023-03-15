@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/ui/bloc/weather_cubit.dart';
 
-class DropdownMenu extends StatefulWidget {
-  const DropdownMenu({Key? key}) : super(key: key);
+class CitySelectorMenu extends StatefulWidget {
+  const CitySelectorMenu({Key? key}) : super(key: key);
 
   @override
-  State<DropdownMenu> createState() => _DropdownMenuState();
+  State<CitySelectorMenu> createState() => _CitySelectorMenuState();
 }
 
-class _DropdownMenuState extends State<DropdownMenu> {
+class _CitySelectorMenuState extends State<CitySelectorMenu> {
   late WeatherCubit cubit;
   late String selectedCityId;
 

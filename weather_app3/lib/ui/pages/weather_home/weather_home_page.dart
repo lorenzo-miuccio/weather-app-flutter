@@ -26,7 +26,7 @@ class WeatherHomePage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 35),
                   child: Column(
                     children: const [
-                      DropdownMenu(),
+                      CitySelectorMenu(),
                       Expanded(child: DisplayWeatherFetch(page: PageName.home)),
                     ],
                   ),

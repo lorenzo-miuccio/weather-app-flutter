@@ -4,9 +4,9 @@ import 'package:domain/shared/key_value_services.dart';
 
 class CitiesRepository {
 
-  final CityKeyValueService keyValueService;
+  final CityKeyValueService _keyValueService;
 
-  CitiesRepository({required this.keyValueService});
+  CitiesRepository({required CityKeyValueService keyValueService}) : _keyValueService = keyValueService;
 
   static const List<City> cities = [
     City(cityName: 'Rome', countryId: 'IT', translatedName: 'Roma'),
@@ -17,7 +17,7 @@ class CitiesRepository {
     City(cityName: 'Messina', countryId: 'IT'),
   ];
 
-  Future<void> updateCityKeyValue(String cityId) => keyValueService.updateSavedCityId(cityId);
+  Future<void> updateCityKeyValue(String cityId) => _keyValueService.updateSavedCityId(cityId);
 
-  String getCityKeyValue() => keyValueService.getSavedCityId();
+  String getCityKeyValue() => _keyValueService.getSavedCityId();
 }

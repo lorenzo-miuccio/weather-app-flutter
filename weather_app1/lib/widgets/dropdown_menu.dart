@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../models/city.dart';
 import '../provider/cities.dart';
 
-class DropdownMenu extends StatefulWidget {
-  const DropdownMenu({Key? key}) : super(key: key);
+class MyDropdownMenu extends StatefulWidget {
+  const MyDropdownMenu({Key? key}) : super(key: key);
 
   @override
-  State<DropdownMenu> createState() => _DropdownMenuState();
+  State<MyDropdownMenu> createState() => _MyDropdownMenuState();
 }
 
-class _DropdownMenuState extends State<DropdownMenu> {
+class _MyDropdownMenuState extends State<MyDropdownMenu> {
   @override
   Widget build(BuildContext context) {
     CitiesChangeNotifier? citiesData = CitiesInheritedNotifier.of(context);

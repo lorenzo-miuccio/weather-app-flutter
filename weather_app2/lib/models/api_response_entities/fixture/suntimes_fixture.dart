@@ -14,6 +14,6 @@ class _SunTimesEntityFixtureFactory extends JsonFixtureFactory<SunTimesEntity> {
       define((faker) => SunTimesEntity(sunrise: faker.date.dateTime(), sunset: faker.date.dateTime()));
 
   @override
-  JsonFixtureDefinition<SunTimesEntity> jsonDefinition() =>
-      defineJson((object) => {'sunrise': object.sunrise.millisecondsSinceEpoch, 'sunset': object.sunset.millisecondsSinceEpoch});
+  JsonFixtureDefinition<SunTimesEntity> jsonDefinition() => defineJson(
+      (object) => {'sunrise': object.sunrise.millisecondsSinceEpoch, 'sunset': object.sunset.millisecondsSinceEpoch});
 }

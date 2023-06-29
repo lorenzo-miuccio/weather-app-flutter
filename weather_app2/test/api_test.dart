@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:weather_app/models/fixture/weather_api_resp_fixture.dart';
+import 'package:weather_app/models/api_response_entities/fixture/weather_api_resp_fixture.dart';
 import 'package:weather_app/services/network/weather_api.dart';
 
 void main() async {

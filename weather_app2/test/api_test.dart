@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:weather_app/models/fixture/fixture_factories.dart';
+import 'package:weather_app/models/fixture/weather_api_resp_fixture.dart';
 import 'package:weather_app/services/network/weather_api.dart';
 
 void main() async {
@@ -34,8 +34,9 @@ void main() async {
       //     '{"coord":{"lon":12.4839,"lat":41.8947},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04d"}],"base":"stations","main":{"temp":29.19,"feels_like":30.45,"temp_min":27.53,"temp_max":30.71,"pressure":1013,"humidity":54},"visibility":10000,"wind":{"speed":3.09,"deg":260},"clouds":{"all":75},"dt":1688036508,"sys":{"type":2,"id":2037790,"country":"IT","sunrise":1688009842,"sunset":1688064556},"timezone":7200,"id":3169070,"name":"Rome","cod":200}';
       // final weather = jsonDecode(weatherJson);
 
-      final Map<String, dynamic> weather = WeatherFixture.factory().makeSingle().toJson();
+      final Map<String, dynamic> weather = WeatherFixture.factory().makeJsonObject();
 
+      print(weather);
       const query = <String, dynamic>{
         'q': 'roma, IT',
         'units': 'metric',

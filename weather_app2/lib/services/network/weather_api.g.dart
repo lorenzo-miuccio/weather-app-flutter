@@ -24,7 +24,7 @@ class _WeatherApi implements WeatherApi {
   Future<WeatherApiResp> GETWeatherByCityId({
     required cityId,
     units = 'metric',
-    apiKey = 'bb067dbc70fcc777779f5f394585b728',
+    apiKey = API_KEY,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -33,7 +33,7 @@ class _WeatherApi implements WeatherApi {
       r'appid': apiKey,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<WeatherApiResp>(Options(
       method: 'GET',

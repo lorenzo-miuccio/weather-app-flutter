@@ -1,0 +1,43 @@
+{
+  "coord": {
+    "lon": 12.4839,
+    "lat": 41.8947
+  },
+  "weather": [
+    {
+      "id": 802,
+      "main": "Clouds",
+      "description": "scattered clouds",
+      "icon": "03d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 28.83,
+    "feels_like": 30.19,
+    "temp_min": 26.86,
+    "temp_max": 31.74,
+    "pressure": 1014,
+    "humidity": 56
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 1.03,
+    "deg": 0
+  },
+  "clouds": {
+    "all": 40
+  },
+  "dt": 1688032253,
+  "sys": {
+    "type": 2,
+    "id": 2000926,
+    "country": "IT",
+    "sunrise": 1688009842,
+    "sunset": 1688064556
+  },
+  "timezone": 7200,
+  "id": 3169070,
+  "name": "Rome",
+  "cod": 200
+}

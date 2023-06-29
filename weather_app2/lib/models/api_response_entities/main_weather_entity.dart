@@ -12,4 +12,6 @@ class MainWeatherEntity {
 
   factory MainWeatherEntity.fromJson(Map<String, dynamic> json) => _$MainWeatherEntityFromJson(json);
 
+  Map<String, dynamic> toJson() => _$MainWeatherEntityToJson(this);
+
 }

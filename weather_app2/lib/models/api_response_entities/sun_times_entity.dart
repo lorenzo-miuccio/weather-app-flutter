@@ -12,6 +12,8 @@ class SunTimesEntity {
 
   factory SunTimesEntity.fromJson(Map<String, dynamic> json) => _$SunTimesEntityFromJson(json);
 
+  Map<String, dynamic> toJson() => _$SunTimesEntityToJson(this);
+
 }
 
 class EpochDateTimeConverter implements JsonConverter<DateTime, int> {

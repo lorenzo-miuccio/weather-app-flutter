@@ -44,6 +44,8 @@ dependencies:
   retrofit_generator: ^6.0.0+1
   freezed: ^2.3.2
   freezed_annotation: ^2.2.0
+  http_mock_adapter: ^0.4.4
+  data_fixture_dart: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +74,7 @@ flutter:
   assets:
     - assets/images/no_wifi.png
     - assets/images/placeholder_image.png
+    - assets/mock/weather.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

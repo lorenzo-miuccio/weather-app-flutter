@@ -14,4 +14,5 @@ class WindEntity {
 
   factory WindEntity.fromJson(Map<String, dynamic> json) => _$WindEntityFromJson(json);
 
+  Map<String, dynamic> toJson() => _$WindEntityToJson(this);
 }

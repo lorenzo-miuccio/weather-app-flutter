@@ -12,5 +12,7 @@ class WeatherDescriptionEntity {
 
   factory WeatherDescriptionEntity.fromJson(Map<String, dynamic> json) => _$WeatherDescriptionEntityFromJson(json);
 
+  Map<String, dynamic> toJson() => _$WeatherDescriptionEntityToJson(this);
+
   static String _iconPathFromJson(String iconId) => 'http://openweathermap.org/img/wn/$iconId@2x.png';
 }

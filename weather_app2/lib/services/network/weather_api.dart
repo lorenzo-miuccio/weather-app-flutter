@@ -6,7 +6,10 @@ import 'package:weather_app/models/api_response_entities/weather_api_resp.dart';
 
 part 'weather_api.g.dart';
 
-@RestApi(baseUrl: "https://api.openweathermap.org")
+const BASE_URL = "https://api.openweathermap.org";
+const API_KEY = 'bb067dbc70fcc777779f5f394585b728';
+
+@RestApi(baseUrl: BASE_URL)
 abstract class WeatherApi {
   factory WeatherApi(Dio dio, {String baseUrl}) = _WeatherApi;
 
@@ -14,6 +17,6 @@ abstract class WeatherApi {
   Future<WeatherApiResp> GETWeatherByCityId({
     @Query('q') required String cityId,
     @Query('units') String units = 'metric',
-    @Query('appid') String apiKey = 'bb067dbc70fcc777779f5f394585b728',
+    @Query('appid') String apiKey = API_KEY,
   });
 }

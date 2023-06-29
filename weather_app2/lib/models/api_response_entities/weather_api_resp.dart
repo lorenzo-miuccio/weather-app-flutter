@@ -1,6 +1,5 @@
 // class containing all weather information used by the app to display the current weather
 import 'package:json_annotation/json_annotation.dart';
-import 'package:weather_app/models/weather.dart';
 
 import 'main_weather_entity.dart';
 import 'sun_times_entity.dart';
@@ -9,7 +8,7 @@ import 'wind_entity.dart';
 
 part 'weather_api_resp.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class WeatherApiResp {
   final List<WeatherDescriptionEntity> weather;
   final MainWeatherEntity main;
@@ -30,7 +29,7 @@ class WeatherApiResp {
 
   // method used to retrieve a new instance from the response of the API call
   factory WeatherApiResp.fromJson(Map<String, dynamic> json) =>
-      _$WeatherApiResponseFromJson(json);
+      _$WeatherApiRespFromJson(json);
+
+  Map<String, dynamic> toJson() => _$WeatherApiRespToJson(this);
 }
-
-

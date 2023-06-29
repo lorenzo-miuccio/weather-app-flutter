@@ -39,8 +39,8 @@ class WeatherApiServiceMock implements WeatherApiService {
 class _WeatherApiServiceInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.receiveTimeout = 5000;
-    options.connectTimeout = 3000;
+    options.receiveTimeout = const Duration(milliseconds: 5000);
+    options.connectTimeout = const Duration(milliseconds: 3000);
 
     return handler.next(options);
   }

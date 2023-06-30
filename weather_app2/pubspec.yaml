@@ -44,11 +44,13 @@ dependencies:
   retrofit_generator: ^6.0.0+1
   freezed: ^2.3.2
   freezed_annotation: ^2.2.0
-  http_mock_adapter: ^0.4.4
   data_fixture_dart: ^2.2.0
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+
+  integration_test:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -58,6 +60,8 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   build_runner: ^2.3.2
+  http_mock_adapter: ^0.4.4
+  mockito: ^5.4.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

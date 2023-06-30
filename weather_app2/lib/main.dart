@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:weather_app/domain/weather_repository.dart';
-import 'package:weather_app/models/api_response_entities/fixture/weather_api_resp_fixture.dart';
 import 'package:weather_app/models/api_response_entities/weather_api_resp.dart';
 import 'package:weather_app/pages/cities_weather_page.dart';
 import 'package:weather_app/provider/city_weather_notifier.dart';
@@ -37,7 +36,6 @@ class MyApp extends StatelessWidget {
 
     final weatherApiService = env == Env.prod ? WeatherApiServiceImpl() : WeatherApiServiceMock();
 
-    print(WeatherFixture.factory().makeJsonObject());
     return MaterialApp(
       title: 'Skill Assessment',
       theme: ThemeData(
